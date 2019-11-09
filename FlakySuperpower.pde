@@ -26,7 +26,6 @@ void draw()
   float dt = (currTime - prevTime) / 1000f;
   prevTime = currTime;
 
-
   update(dt);
   render();
 }
@@ -46,10 +45,21 @@ void render()
 {
   background(0);
   if (!UI.paused) {
-
     player.render();
     spawner.render();
   }
-  //else
+  
   UI.draw();
+}
+
+void mouseReleased() {
+  if (UI.paused) {
+    for (int i = 0; i < UI.buttons.size(); i++) {
+      if (UI.buttons.get(i).hit(mouseX, mouseY) && player.points >= UI.buttons.get(i).cost) {
+        player.points -= UI.buttons.get(i).cost;
+        player.powerH.activate(i);
+        UI.buttons.get(i).purchased();
+      }
+    }
+  }
 }
