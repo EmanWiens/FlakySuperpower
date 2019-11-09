@@ -6,6 +6,8 @@ class Player extends Entity
 
   //final float WIDTH;
   //final float HEIGHT;
+  PowerUpHandler powerH;
+  ArrayList<Bullet> pBullets;
 
   Player(float x, float y, float w, float h)
   {
@@ -14,6 +16,8 @@ class Player extends Entity
     //this.y = y;
     //this.WIDTH = w;
     //this.HEIGHT = h;
+    powerH = new PowerUpHandler();
+    pBullets = new ArrayList<Bullet>();
   }
 
   void update(float dt)
