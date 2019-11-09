@@ -25,6 +25,7 @@ class Bullet
     {
         x += DIR.x * SPEED * dt;
         y += DIR.y * SPEED * dt;
+        
     }
     
     void render()
