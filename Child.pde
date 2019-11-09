@@ -1,4 +1,4 @@
-+class Child extends Entity {
+class Child extends Entity {
   boolean safe = true;
   float drag;
   
