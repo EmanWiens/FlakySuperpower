@@ -31,6 +31,7 @@ class Bullet extends Entity
   void render()
   {
     fill(0, 255f, 255f, 255f);
-    rect(x, y, WIDTH, HEIGHT);
+    //rect(x, y, WIDTH, HEIGHT);
+    image(rockTex, x,y, WIDTH,HEIGHT);
   }
 }
