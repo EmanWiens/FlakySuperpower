@@ -6,7 +6,7 @@ class Player extends Entity
 
   //final float WIDTH;
   //final float HEIGHT;
-
+  Child baby;
   Player(float x, float y, float w, float h)
   {
     super(x, y, w, h);
@@ -14,6 +14,7 @@ class Player extends Entity
     //this.y = y;
     //this.WIDTH = w;
     //this.HEIGHT = h;
+    baby = new Child(this.x, this.y + 5 , w/5, h/5 );
   }
 
   void update(float dt)
@@ -73,5 +74,6 @@ class Player extends Entity
   {
     fill(255, 0, 0, 255);
     ellipse(x, y, WIDTH, HEIGHT);
+    baby.render();
   }
 }
