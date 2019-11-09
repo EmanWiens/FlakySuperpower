@@ -6,6 +6,8 @@ class Player extends Entity
 
   //final float WIDTH;
   //final float HEIGHT;
+  PowerUpHandler powerH;
+  ArrayList<Bullet> pBullets;
   int points = 0;
 
   Player(float x, float y, float w, float h)
@@ -15,6 +17,8 @@ class Player extends Entity
     //this.y = y;
     //this.WIDTH = w;
     //this.HEIGHT = h;
+    powerH = new PowerUpHandler();
+    pBullets = new ArrayList<Bullet>();
   }
 
   void update(float dt)
@@ -39,8 +43,18 @@ class Player extends Entity
     {
       move.x += 1;
     }
-
-
+    
+    if (Input.key_1) {
+      powerH.usePowerUp(1 - 1);
+    } else if (Input.key_2) {
+      powerH.usePowerUp(2 - 1);
+    } else if (Input.key_3) {
+      powerH.usePowerUp(3 - 1);
+    } else if (Input.key_4) {
+      powerH.usePowerUp(4 - 1);
+    }
+    
+    
     if (y + HEIGHT/2 >= height)
     {
       move.y -= 1;
