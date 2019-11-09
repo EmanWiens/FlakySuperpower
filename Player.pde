@@ -4,7 +4,7 @@ class Player extends Entity
   int points = 0;
   ArrayList<Float> playerX;
   ArrayList<Float> playerY;
-  int childDist = 10;
+  int childDist = 25;
   Child baby;
   
   PowerUpHandler powerH;
@@ -73,17 +73,22 @@ class Player extends Entity
 
     move.normalize();
     move.mult(speed);
+    
+    float tempY = y; 
+    float tempX = x;
 
     x += move.x * dt;
     y += move.y * dt;
     
-    playerX.add(x);
-    playerY.add(y);
+    if (tempY != y || tempX != x) {
+      playerX.add(x);
+      playerY.add(y);
+    }
    
 
     
-    
-    baby.update(playerX.get(0), playerY.get(0));
+    if (playerX.size() >= 1) 
+      baby.update(playerX.get(0), playerY.get(0));
     
     if(playerY.size()>=childDist){
       playerX.remove(0);
