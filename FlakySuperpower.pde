@@ -10,6 +10,7 @@ UI_Handler UI;
 void setup()
 {
 
+  
   size(800, 600);
   prevTime = millis();
 
@@ -45,6 +46,7 @@ void update(float dt)
 void render()
 {
   background(0);
+  noStroke();
   if (!UI.paused) {
 
     player.render();
