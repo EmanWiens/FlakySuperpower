@@ -1,20 +1,24 @@
 class Player extends Entity
 {
 
-  //float x; 
-  //float y;
-
-  //final float WIDTH;
-  //final float HEIGHT;
   int points = 0;
+  ArrayList<Float> playerX;
+  ArrayList<Float> playerY;
+  int childDist = 25;
+  Child baby;
 
+  PowerUpHandler powerH;
+  ArrayList<Bullet> pBullets;
   Player(float x, float y, float w, float h)
   {
     super(x, y, w, h);
-    //this.x = x;
-    //this.y = y;
-    //this.WIDTH = w;
-    //this.HEIGHT = h;
+
+    playerX = new ArrayList();
+    playerY = new ArrayList();
+    baby = new Child(x, y, w/2, h /2);
+
+    powerH = new PowerUpHandler();
+    pBullets = new ArrayList<Bullet>();
   }
 
   void update(float dt)
@@ -40,6 +44,15 @@ class Player extends Entity
       move.x += 1;
     }
 
+    if (Input.key_1) {
+      powerH.usePowerUp(1 - 1);
+    } else if (Input.key_2) {
+      powerH.usePowerUp(2 - 1);
+    } else if (Input.key_3) {
+      powerH.usePowerUp(3 - 1);
+    } else if (Input.key_4) {
+      powerH.usePowerUp(4 - 1);
+    }
 
     if (y + HEIGHT/2 >= height)
     {
@@ -61,8 +74,26 @@ class Player extends Entity
     move.normalize();
     move.mult(speed);
 
+    float tempY = y; 
+    float tempX = x;
+
     x += move.x * dt;
     y += move.y * dt;
+
+    if (tempY != y || tempX != x) {
+      playerX.add(x);
+      playerY.add(y);
+    }
+
+
+
+    if (playerX.size() >= 1) 
+      baby.update(playerX.get(0), playerY.get(0));
+
+    if (playerY.size()>=childDist) {
+      playerX.remove(0);
+      playerY.remove(0);
+    }
 
     for (int i = 0; i < spawner.bullets.size(); i++) {
       if (spawner.bullets.get(i).isColliding(this) && spawner.bullets.get(i).active) {
@@ -76,5 +107,6 @@ class Player extends Entity
   {
     fill(255, 0, 0, 255);
     ellipse(x, y, WIDTH, HEIGHT);
+    baby.render();
   }
 }
