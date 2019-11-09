@@ -79,10 +79,12 @@ void render()
   noStroke();
   if (!UI.paused) {
 
-    player.render();
-    spawner.render();
+    
     
     particleSystem.render();
+    
+    player.render();
+    spawner.render();
   }
   //else
   UI.draw();
