@@ -29,9 +29,19 @@ void keyPressed()
     if(key == 'x')  Input.key_x = true;
     if(key == 'y')  Input.key_y = true;
     if(key == 'z')  Input.key_z = true;
+    if(key == '1')  Input.key_1 = true;
+    if(key == '2')  Input.key_2 = true;
+    if(key == '3')  Input.key_3 = true;
+    if(key == '4')  Input.key_4 = true;
+    if(key == '5')  Input.key_5 = true;
+    if(key == '6')  Input.key_6 = true;
+    if(key == '7')  Input.key_7 = true;
+    if(key == '8')  Input.key_8 = true;
+    if(key == '9')  Input.key_9 = true;
+    if(key == '0')  Input.key_0 = true;
 
     if(keyCode == LEFT)  Input.key_left = true;
-        if(keyCode == UP) Input.key_up = true;
+    if(keyCode == UP) Input.key_up = true;
     if(keyCode == DOWN) Input.key_down = true;
     if(keyCode == RIGHT)  Input.key_right = true;
     
@@ -67,6 +77,16 @@ void keyReleased()
     if(key == 'x')  Input.key_x = false;
     if(key == 'y')  Input.key_y = false;
     if(key == 'z')  Input.key_z = false;
+    if(key == '1')  Input.key_1 = false;
+    if(key == '2')  Input.key_2 = false;
+    if(key == '3')  Input.key_3 = false;
+    if(key == '4')  Input.key_4 = false;
+    if(key == '5')  Input.key_5 = false;
+    if(key == '6')  Input.key_6 = false;
+    if(key == '7')  Input.key_7 = false;
+    if(key == '8')  Input.key_8 = false;
+    if(key == '9')  Input.key_9 = false;
+    if(key == '0')  Input.key_0 = false;
 
     if(keyCode == LEFT)  Input.key_left = false;
     if(keyCode == UP) Input.key_up = false;
@@ -111,6 +131,16 @@ static class Input
   static boolean key_x = false;
   static boolean key_y = false;
   static boolean key_z = false;
+  static boolean key_1 = false;
+  static boolean key_2 = false;
+  static boolean key_3 = false;
+  static boolean key_4 = false;
+  static boolean key_5 = false;
+  static boolean key_6 = false;
+  static boolean key_7 = false;
+  static boolean key_8 = false;
+  static boolean key_9 = false;
+  static boolean key_0 = false;
   
   
 //GLOBALS FOR INPUT//////////////////////////////////////////////////////
