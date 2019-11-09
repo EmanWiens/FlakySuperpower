@@ -10,7 +10,7 @@ UI_Handler UI;
 void setup()
 {
 
-  size(800,600);
+  size(800, 600);
   prevTime = millis();
 
   float playerSize = 32;
@@ -45,12 +45,11 @@ void update(float dt)
 void render()
 {
   background(0);
-  if(!UI.paused){
-  
-  player.render();
-  spawner.render();
-}
-//else
-  UI.draw();
+  if (!UI.paused) {
 
+    player.render();
+    spawner.render();
+  }
+  //else
+  UI.draw();
 }
