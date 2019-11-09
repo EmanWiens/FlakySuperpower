@@ -14,7 +14,7 @@ class Player extends Entity
     //this.y = y;
     //this.WIDTH = w;
     //this.HEIGHT = h;
-    baby = new Child(this.x, this.y + 5 , w/5, h/5 );
+    baby = new Child(x, y , w/5, h/5 );
   }
 
   void update(float dt)
@@ -61,9 +61,13 @@ class Player extends Entity
     move.normalize();
     move.mult(speed);
 
+  
+    
     x += move.x * dt;
     y += move.y * dt;
     
+    baby.update(x,y,move, dt);
+   
     for (int i = 0; i < spawner.bullets.size(); i++) {
       if (spawner.bullets.get(i).isColliding(this))
         spawner.bullets.get(i).active = false;
@@ -74,6 +78,6 @@ class Player extends Entity
   {
     fill(255, 0, 0, 255);
     ellipse(x, y, WIDTH, HEIGHT);
-    baby.render();
+    baby.render(x,y);
   }
 }
