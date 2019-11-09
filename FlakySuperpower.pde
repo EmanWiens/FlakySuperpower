@@ -16,8 +16,8 @@ ParticleSystem particleSystem = new ParticleSystem();
 
 void setup()
 {
-  size(800, 600);
-  // fullScreen();
+  size(1024, 768);
+   
 
   smooth(0);
 
@@ -29,11 +29,11 @@ void setup()
 
   spawner = new BulletSpawner();
   pigTex = loadImage("pigTex.png");
-  grassTex = loadImage("grassTex.png");
+  grassTex = loadImage("grassTex.jpg");
   fenceTex = loadImage("fenceTex.png");
   //farmerTex = loadImage("f");
   rockTex = loadImage("rockTex.png");
-  ;
+  
 
   imageMode(CENTER);
 }
@@ -100,16 +100,27 @@ void render()
 
 void drawTiles() {
 
-  float w = 128;
-  float h = 128;
+  float w = 32;
+  float h = 32;
 
-  for (int i = 0; i < width / w; i++)
+  int maxX = (int)(width / w) + 1;
+  int maxY = (int)(height / h) + 1;
+  
+  for (int i = 0; i < maxX; i++)
   {
-    for (int j = 0; j < width / w; j++)
+    for (int j = 0; j < maxY; j++)
     {
       image(grassTex, i * w, j * h, w, h);
     }
   }
+  
+  fill(115, 35, 35f, 255f);
+  rect(0, 0, width, h);
+  rect(0, 0, w, height); 
+  rect(0, height - h, width, h);
+  rect(width - w, 0, w, height);
+  
+  
 }
 
 void mouseReleased() {

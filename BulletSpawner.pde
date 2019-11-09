@@ -2,13 +2,14 @@ class BulletSpawner
 {
   ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 
+  float timeUntilCheck = 0.5f;
   float chanceToShoot = 0.7f;
   float elapsed = 0;
 
 
   void update(float dt)
   {
-    if (elapsed > 0.3f)
+    if (elapsed > timeUntilCheck)
     {
       elapsed = 0;
 
