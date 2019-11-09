@@ -21,8 +21,8 @@ class UI_Handler {
     String p = "Paused";
     float textSize = height * TEXT_WIDTH;
 
-    fill(255);
-    stroke(255);
+    fill(0);
+    stroke(0);
     textSize(textSize);
     
     float sectY = 0, prevSectY = 0;
