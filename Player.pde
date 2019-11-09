@@ -6,6 +6,9 @@ class Player extends Entity
   ArrayList<Float> playerY;
   int childDist = 10;
   Child baby;
+  
+  PowerUpHandler powerH;
+  ArrayList<Bullet> pBullets;
   Player(float x, float y, float w, float h)
   {
     super(x, y, w, h);
