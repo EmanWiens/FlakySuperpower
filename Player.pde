@@ -42,6 +42,15 @@ class Player extends Entity
     {
       move.x += 1;
     }
+    if (Input.key_1) {
+      powerH.usePowerUp(1 - 1);
+    } else if (Input.key_2) {
+      powerH.usePowerUp(2 - 1);
+    } else if (Input.key_3) {
+      powerH.usePowerUp(3 - 1);
+    } else if (Input.key_4) {
+      powerH.usePowerUp(4 - 1);
+    }
     
     
     if (y + HEIGHT/2 >= height)
