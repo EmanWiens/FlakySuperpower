@@ -62,6 +62,11 @@ class Player extends Entity
 
     x += move.x * dt;
     y += move.y * dt;
+    
+    for (int i = 0; i < spawner.bullets.size(); i++) {
+      if (spawner.bullets.get(i).isColliding(this))
+        spawner.bullets.get(i).active = false;
+    }
   }
 
   void render()

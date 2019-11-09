@@ -41,7 +41,8 @@ class BulletSpawner
     {
         for(Bullet b: bullets)
         {
-           b.render(); 
+          if (b.active) 
+             b.render(); 
         }
     }
 }
