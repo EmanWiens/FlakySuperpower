@@ -2,7 +2,7 @@ class BulletSpawner
 {
   ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 
-  float chanceToShoot = 0.5f;
+  float chanceToShoot = 0.7f;
   float elapsed = 0;
 
 
@@ -13,7 +13,7 @@ class BulletSpawner
       elapsed = 0;
       
       //we are going to shoot this frame
-      if (random(0f, 1f) > chanceToShoot)
+      if (random(0f, 1f) > 1f - chanceToShoot)
       {
          //choose a side to shoot from
          //we will do this by deciding if we are shooting from a
@@ -25,8 +25,8 @@ class BulletSpawner
         
         float x;
         float y;
-        float w = 8;
-        float h = 8;
+        float w = 16;
+        float h = 16;
         
         float speed = 256;
         PVector dir = new PVector();
