@@ -11,16 +11,63 @@ class BulletSpawner
     if (elapsed > 0.5f)
     {
       elapsed = 0;
-
+      
+      //we are going to shoot this frame
       if (random(0f, 1f) > chanceToShoot)
       {
-        float x = random(0, SCREEN_WIDTH);
-        float y =  -5;
+         //choose a side to shoot from
+         //we will do this by deciding if we are shooting from a
+         //horizontal edge or vertical edge
+         //after that we will decide where along the edge we will fire from
+          
+        boolean vertical = random(0f, 1f) > 0.5f;
+        
+        
+        float x;
+        float y;
         float w = 8;
         float h = 8;
-
+        
         float speed = 256;
-        PVector dir = new PVector(0, 1);
+        PVector dir = new PVector();
+        
+        if(vertical)
+        {
+          boolean top =  random(0f, 1f) > 0.5f;;
+          
+          if(top)
+          {
+            y = -5;
+            x = random(0, SCREEN_WIDTH - w);
+          }
+          else
+          {
+            y = SCREEN_HEIGHT + 5;
+            x = random(0, SCREEN_WIDTH - w);
+          }
+        }
+        else
+        {
+          boolean left = random(0f, 1f) > 0.5f;
+          
+          if(left)
+          {
+            x = -5;
+            y = random(0, SCREEN_HEIGHT - h);
+          }
+          else
+          {
+            x = SCREEN_WIDTH + 5;
+            y = random(0, SCREEN_HEIGHT - h);
+          }
+        }
+          
+        dir.x = player.baby.x - x;
+        dir.y = player.baby.y - y;
+        dir.normalize();
+        
+
+        
 
         Bullet b = new Bullet(x, y, w, h, speed, dir);
         bullets.add(b);
