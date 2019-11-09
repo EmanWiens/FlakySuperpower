@@ -10,8 +10,6 @@ class Player extends Entity
   PowerUpHandler powerH;
   ArrayList<Bullet> pBullets;
   
-  
-  
   Player(float x, float y, float w, float h)
   {
     super(x, y, w, h);
@@ -124,5 +122,12 @@ class Player extends Entity
     fill(255, 0, 0, 255);
     ellipse(x, y, WIDTH, HEIGHT);
     baby.render();
+    
+    for (int i = 0; i < powerH.total; i++) {
+      if (powerH.active[i])
+        print("Powerup avail: " + powerH.powerUpString[i] + "\n");
+    }
+    
+    print("\n\n");
   }
 }

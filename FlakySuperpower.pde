@@ -45,8 +45,6 @@ void draw()
   float currTime = millis();
   float dt = (currTime - prevTime) / 1000f;
   prevTime = currTime;
-  
-  
   update(dt);
   
   
@@ -85,9 +83,6 @@ void update(float dt)
     particleSystem.update(dt);
   }
   
-  
-  
-
   UI.update();
 }
 
@@ -97,15 +92,11 @@ void render()
   noStroke();
   if (!UI.paused) {
     drawTiles();
-
-    
-    
     particleSystem.render();
-    
     player.render();
     spawner.render();
   }
-  //else
+  
   UI.draw();
 }
 
@@ -122,16 +113,16 @@ void drawTiles(){
       image(grassTex, i * w, j * h, w, h);    
     }
   }
-    
-  
-      
-       
+}
 
-    // rect(i * w, j * h, w,h);      
-
-   
- 
- 
-
- 
+void mouseReleased() {
+  if (UI.paused) {
+    for (int i = 0; i < UI.buttons.size(); i++) {
+      if (UI.buttons.get(i).hit(mouseX, mouseY) && player.points >= UI.buttons.get(i).cost) {
+        player.points -= UI.buttons.get(i).cost;
+        player.powerH.activate(i);
+        UI.buttons.get(i).purchased();
+      }
+    }
+  }
 }

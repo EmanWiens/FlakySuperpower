@@ -27,7 +27,7 @@ abstract class Entity
     PVector me = new PVector(x, y);
     PVector otherE = new PVector(other.x, other.y);
 
-    //if(x < other.x - other.WIDTH || x + WIDTH > other.x && y > other.y - other.HEIGHT || y + HEIGHT < other.y)
+    //if(x < other.x + other.WIDTH && x + WIDTH > other.x && y > other.y + other.HEIGHT && y + HEIGHT < other.y)
     if (me.dist(otherE) < WIDTH / 2 + other.WIDTH/2)
     {
       result = true;
