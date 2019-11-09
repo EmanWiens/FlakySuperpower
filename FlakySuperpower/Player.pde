@@ -21,20 +21,20 @@ class Player// extends Entity
        
        float speed = 256f;
        
-       if(Input.key_w)
+       if(Input.key_up)
        {
            move.y -= 1;
        }
-       if(Input.key_s)
+       if(Input.key_down)
        {
            move.y += 1;
        }
        
-       if(Input.key_a)
+       if(Input.key_left)
        {
            move.x -= 1;
        }
-       if(Input.key_d)
+       if(Input.key_right)
        {
            move.x += 1;
        }

@@ -31,7 +31,8 @@ void keyPressed()
     if(key == 'z')  Input.key_z = true;
 
     if(keyCode == LEFT)  Input.key_left = true;
-    
+        if(keyCode == UP) Input.key_up = true;
+    if(keyCode == DOWN) Input.key_down = true;
     if(keyCode == RIGHT)  Input.key_right = true;
     
 }
@@ -68,7 +69,8 @@ void keyReleased()
     if(key == 'z')  Input.key_z = false;
 
     if(keyCode == LEFT)  Input.key_left = false;
-    
+    if(keyCode == UP) Input.key_up = false;
+    if(keyCode == DOWN) Input.key_down = false;
     if(keyCode == RIGHT) Input.key_right = false;
     
 }
