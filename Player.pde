@@ -13,7 +13,9 @@ class Player extends Entity
     playerX = new ArrayList();
     playerY = new ArrayList();
     baby = new Child(x,y, w/5, h /5);
-
+    
+    powerH = new PowerUpHandler();
+    pBullets = new ArrayList<Bullet>();
   }
 
   void update(float dt)
@@ -39,7 +41,16 @@ class Player extends Entity
       move.x += 1;
     }
 
-
+    if (Input.key_1) {
+      powerH.usePowerUp(1 - 1);
+    } else if (Input.key_2) {
+      powerH.usePowerUp(2 - 1);
+    } else if (Input.key_3) {
+      powerH.usePowerUp(3 - 1);
+    } else if (Input.key_4) {
+      powerH.usePowerUp(4 - 1);
+    }
+    
     if (y + HEIGHT/2 >= height)
     {
       move.y -= 1;
