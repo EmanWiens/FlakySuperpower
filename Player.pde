@@ -2,21 +2,19 @@ class Player extends Entity
 {
 
   int points = 0;
-  ArrayList<Float> playerX;
-  ArrayList<Float> playerY;
   int childDist = 25;
   Child baby;
 
   PowerUpHandler powerH;
   ArrayList<Bullet> pBullets;
   
+  float speed = 256f;
+  
   Player(float x, float y, float w, float h)
   {
     super(x, y, w, h);
 
-    playerX = new ArrayList();
-    playerY = new ArrayList();
-    baby = new Child(x, y, w/2, h /2);
+    baby = new Child(x + 32, y + 32, w/2, h /2);
 
     powerH = new PowerUpHandler();
     pBullets = new ArrayList<Bullet>();
@@ -26,7 +24,7 @@ class Player extends Entity
   {
     PVector move = new PVector(0, 0);
 
-    float speed = 256f;
+    
 
     if (Input.key_up || Input.key_w)
     {
@@ -82,8 +80,6 @@ class Player extends Entity
     y += move.y * dt;
 
     if (tempY != y || tempX != x) {
-      playerX.add(x);
-      playerY.add(y);
     
       
       if(random(0f, 1f) > 0.1f)
@@ -97,14 +93,7 @@ class Player extends Entity
     }
 
 
-
-    if (playerX.size() >= 1) 
-      baby.update(playerX.get(0), playerY.get(0));
-
-    if (playerY.size()>=childDist) {
-      playerX.remove(0);
-      playerY.remove(0);
-    }
+    baby.update(dt);
 
     for (int i = 0; i < spawner.bullets.size(); i++) {
       if (spawner.bullets.get(i).isColliding(this) && spawner.bullets.get(i).active) {

@@ -24,7 +24,7 @@ void setup()
   prevTime = millis();
 
   float playerSize = 32;
-  player = new Player(width / 2, height - playerSize, playerSize, playerSize);
+  player = new Player(width / 2, height / 2, playerSize, playerSize);
   UI = new UI_Handler();
 
   spawner = new BulletSpawner();
@@ -33,6 +33,8 @@ void setup()
   fenceTex = loadImage("fenceTex.png");
   //farmerTex = loadImage("f");
   rockTex = loadImage("rockTex.png");;
+  
+  imageMode(CENTER);
   
 
 }
@@ -52,7 +54,7 @@ void update(float dt)
 {
   if (!UI.paused) {  
     
-    if(player.baby.isSafe())
+    if(player.baby.active)
     {
       player.update(dt);
   
