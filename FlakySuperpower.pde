@@ -13,9 +13,13 @@ Player player;
 
 BulletSpawner spawner;
 UI_Handler UI;
+
+ParticleSystem particleSystem = new ParticleSystem();
+
 void setup()
 {
 
+  
   size(800, 600);
   prevTime = millis();
 
@@ -45,11 +49,38 @@ void draw()
 
 void update(float dt)
 {
-  if (!UI.paused && player.baby.isSafe()) {  
-    player.update(dt);
-
-    spawner.update(dt);
+  if (!UI.paused) {  
+    
+    if(player.baby.isSafe())
+    {
+      player.update(dt);
+  
+      spawner.update(dt);
+    }
+    else
+    {
+      float x= player.baby.x;
+      float y = player.baby.y;
+      
+      float size = 8f;
+      
+      float speed = random(128f, 256f);
+      
+      PVector dir = PVector.fromAngle(random(0, TWO_PI));
+      
+      float lifespan = random(0.1f, 1f);
+      
+      color start = color(200f, 150f, 150f, 255f);
+      color end = color(200f, 150f, 150f, 0f);
+      
+      particleSystem.createParticle(x, y, size, speed, dir, lifespan, start, end);
+    }
+    
+    particleSystem.update(dt);
   }
+  
+  
+  
 
   UI.update();
 }
@@ -57,8 +88,14 @@ void update(float dt)
 void render()
 {
   background(0);
+  noStroke();
   if (!UI.paused) {
     drawTiles();
+
+    
+    
+    particleSystem.render();
+    
     player.render();
     spawner.render();
   }

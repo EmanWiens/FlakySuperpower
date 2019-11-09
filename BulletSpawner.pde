@@ -8,7 +8,7 @@ class BulletSpawner
 
   void update(float dt)
   {
-    if (elapsed > 0.5f)
+    if (elapsed > 0.3f)
     {
       elapsed = 0;
       
