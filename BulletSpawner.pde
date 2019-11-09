@@ -38,12 +38,12 @@ class BulletSpawner
           if(top)
           {
             y = -5;
-            x = random(0, SCREEN_WIDTH - w);
+            x = random(0, width - w);
           }
           else
           {
-            y = SCREEN_HEIGHT + 5;
-            x = random(0, SCREEN_WIDTH - w);
+            y = height + 5;
+            x = random(0, width - w);
           }
         }
         else
@@ -53,12 +53,12 @@ class BulletSpawner
           if(left)
           {
             x = -5;
-            y = random(0, SCREEN_HEIGHT - h);
+            y = random(0, height - h);
           }
           else
           {
-            x = SCREEN_WIDTH + 5;
-            y = random(0, SCREEN_HEIGHT - h);
+            x = width + 5;
+            y = random(0, height - h);
           }
         }
           

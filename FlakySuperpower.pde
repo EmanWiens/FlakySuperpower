@@ -6,8 +6,6 @@ PImage rockTex;
 float prevTime;
 
 PVector[][] tileArray;
-final float SCREEN_WIDTH  = 800;
-final float SCREEN_HEIGHT = 600;
 final int tileNum = 5;
 Player player;
 
@@ -18,16 +16,15 @@ ParticleSystem particleSystem = new ParticleSystem();
 
 void setup()
 {
-
-  
   size(800, 600);
+  // fullScreen();
   
   smooth(0);
   
   prevTime = millis();
 
   float playerSize = 32;
-  player = new Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT - playerSize, playerSize, playerSize);
+  player = new Player(width / 2, height - playerSize, playerSize, playerSize);
   UI = new UI_Handler();
 
   spawner = new BulletSpawner();

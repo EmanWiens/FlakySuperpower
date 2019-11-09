@@ -36,8 +36,6 @@ class UI_Handler {
         stroke(255);
         textSize(textSize);
         
-        line(0, sectY, width, sectY);
-        
         temp = player.powerH.getName(i);
         if (temp != null)
           text(player.powerH.getName(i), textX, sectY + (buttonHeight * height) / 2 + textAscent());
