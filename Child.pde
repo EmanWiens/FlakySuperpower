@@ -4,11 +4,13 @@ class Child extends Entity {
 
   public Child(float x, float y, float w, float h) {
     super(x, y, w, h);
+    
   }
 
   public void render() {
 
-    rect(x, y, WIDTH, HEIGHT);
+   // rect(x, y, WIDTH, HEIGHT);
+    image(pigTex, x,y, WIDTH,HEIGHT);
   };
 
 

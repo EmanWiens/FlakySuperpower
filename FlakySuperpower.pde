@@ -1,8 +1,14 @@
+PImage grassTex;
+PImage pigTex;
+PImage fenceTex;
+PImage farmerTex;
+PImage rockTex;
 float prevTime;
 
+PVector[][] tileArray;
 final float SCREEN_WIDTH  = 800;
 final float SCREEN_HEIGHT = 600;
-
+final int tileNum = 5;
 Player player;
 
 BulletSpawner spawner;
@@ -15,6 +21,9 @@ void setup()
 
   
   size(800, 600);
+  
+  smooth(0);
+  
   prevTime = millis();
 
   float playerSize = 32;
@@ -22,6 +31,13 @@ void setup()
   UI = new UI_Handler();
 
   spawner = new BulletSpawner();
+  pigTex = loadImage("pigTex.png");
+  grassTex = loadImage("grassTex.png");
+  fenceTex = loadImage("fenceTex.png");
+  //farmerTex = loadImage("f");
+  rockTex = loadImage("rockTex.png");;
+  
+
 }
 
 void draw()
@@ -29,9 +45,11 @@ void draw()
   float currTime = millis();
   float dt = (currTime - prevTime) / 1000f;
   prevTime = currTime;
-
-
+  
+  
   update(dt);
+  
+  
   render();
 }
 
@@ -78,6 +96,7 @@ void render()
   background(0);
   noStroke();
   if (!UI.paused) {
+    drawTiles();
 
     
     
@@ -88,4 +107,31 @@ void render()
   }
   //else
   UI.draw();
+}
+
+
+void drawTiles(){
+ 
+  float w = 32;
+  float h = 32;
+  
+  for(int i = 0; i < width / w; i++)
+  {
+    for(int j = 0; j < width / w; j++)
+    {
+      image(grassTex, i * w, j * h, w, h);    
+    }
+  }
+    
+  
+      
+       
+
+    // rect(i * w, j * h, w,h);      
+
+   
+ 
+ 
+
+ 
 }
