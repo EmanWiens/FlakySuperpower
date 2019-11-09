@@ -1,18 +1,19 @@
-class Player// extends Entity
+class Player extends Entity
 {
 
-  float x; 
-  float y;
+  //float x; 
+  //float y;
 
-  final float WIDTH;
-  final float HEIGHT;
+  //final float WIDTH;
+  //final float HEIGHT;
 
   Player(float x, float y, float w, float h)
   {
-    this.x = x;
-    this.y = y;
-    this.WIDTH = w;
-    this.HEIGHT = h;
+    super(x, y, w, h);
+    //this.x = x;
+    //this.y = y;
+    //this.WIDTH = w;
+    //this.HEIGHT = h;
   }
 
   void update(float dt)
@@ -21,23 +22,24 @@ class Player// extends Entity
 
     float speed = 256f;
 
-    if (Input.key_up)
+    if (Input.key_up || Input.key_w)
     {
       move.y -= 1;
     }
-    if (Input.key_down)
+    if (Input.key_down || Input.key_s)
     {
       move.y += 1;
     }
-
-    if (Input.key_left)
+    if (Input.key_left || Input.key_a)
     {
       move.x -= 1;
     }
-    if (Input.key_right)
+    if (Input.key_right || Input.key_d)
     {
       move.x += 1;
     }
+    
+    
     if (y + HEIGHT/2 >= height)
     {
       move.y -= 1;

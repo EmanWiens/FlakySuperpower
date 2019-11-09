@@ -1,10 +1,10 @@
-class Bullet
+class Bullet extends Entity
 {
-    float x;
-    float y;
+    //float x;
+    //float y;
     
-    final float WIDTH;
-    final float HEIGHT;
+    //final float WIDTH;
+    //final float HEIGHT;
     
     
     final float SPEED;
@@ -13,10 +13,11 @@ class Bullet
     
     Bullet(float x, float y, float w, float h, float speed, PVector dir)
     {
-        this.x = x;
-        this.y = y;
-        this.WIDTH = w;
-        this.HEIGHT = h;
+        super(x, y, w, h);
+        //this.x = x;
+        //this.y = y;
+        //this.WIDTH = w;
+        //this.HEIGHT = h;
         this.SPEED = speed;
         this.DIR = dir.normalize();
     }

@@ -1,11 +1,10 @@
 class BulletSpawner
 {
- 
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
   
     float chanceToShoot = 0.5f;
     float elapsed = 0;
-  
+    
   
     void update(float dt)
     {
