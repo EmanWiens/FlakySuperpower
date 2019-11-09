@@ -1,20 +1,19 @@
 class Player extends Entity
 {
 
-  //float x; 
-  //float y;
-
-  //final float WIDTH;
-  //final float HEIGHT;
   int points = 0;
-
+  ArrayList<Float> playerX;
+  ArrayList<Float> playerY;
+  int childDist = 10;
+  Child baby;
   Player(float x, float y, float w, float h)
   {
     super(x, y, w, h);
-    //this.x = x;
-    //this.y = y;
-    //this.WIDTH = w;
-    //this.HEIGHT = h;
+    
+    playerX = new ArrayList();
+    playerY = new ArrayList();
+    baby = new Child(x,y, w/5, h /5);
+
   }
 
   void update(float dt)
@@ -63,7 +62,20 @@ class Player extends Entity
 
     x += move.x * dt;
     y += move.y * dt;
+    
+    playerX.add(x);
+    playerY.add(y);
+   
 
+    
+    
+    baby.update(playerX.get(0), playerY.get(0));
+    
+    if(playerY.size()>=childDist){
+      playerX.remove(0);
+      playerY.remove(0);
+    }
+    
     for (int i = 0; i < spawner.bullets.size(); i++) {
       if (spawner.bullets.get(i).isColliding(this) && spawner.bullets.get(i).active) {
         spawner.bullets.get(i).active = false;
@@ -76,5 +88,6 @@ class Player extends Entity
   {
     fill(255, 0, 0, 255);
     ellipse(x, y, WIDTH, HEIGHT);
+    baby.render();
   }
 }
