@@ -112,8 +112,8 @@ void render()
 
 void drawTiles(){
  
-  float w = 32;
-  float h = 32;
+  float w = 128;
+  float h = 128;
   
   for(int i = 0; i < width / w; i++)
   {
