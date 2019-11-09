@@ -18,9 +18,9 @@ void setup()
 {
   size(800, 600);
   // fullScreen();
-  
+
   smooth(0);
-  
+
   prevTime = millis();
 
   float playerSize = 32;
@@ -32,11 +32,10 @@ void setup()
   grassTex = loadImage("grassTex.png");
   fenceTex = loadImage("fenceTex.png");
   //farmerTex = loadImage("f");
-  rockTex = loadImage("rockTex.png");;
-  
-  imageMode(CENTER);
-  
+  rockTex = loadImage("rockTex.png");
+  ;
 
+  imageMode(CENTER);
 }
 
 void draw()
@@ -45,43 +44,42 @@ void draw()
   float dt = (currTime - prevTime) / 1000f;
   prevTime = currTime;
   update(dt);
-  
-  
+
+
   render();
 }
 
 void update(float dt)
 {
   if (!UI.paused) {  
-    
-    if(player.baby.active)
+
+    if (player.baby.active)
     {
       player.update(dt);
-  
+
       spawner.update(dt);
-    }
-    else
+    } else
     {
       float x= player.baby.x;
       float y = player.baby.y;
-      
+
       float size = 8f;
-      
+
       float speed = random(128f, 256f);
-      
+
       PVector dir = PVector.fromAngle(random(0, TWO_PI));
-      
+
       float lifespan = random(0.1f, 1f);
-      
+
       color start = color(200f, 150f, 150f, 255f);
       color end = color(200f, 150f, 150f, 0f);
-      
+
       particleSystem.createParticle(x, y, size, speed, dir, lifespan, start, end);
     }
-    
+
     particleSystem.update(dt);
   }
-  
+
   UI.update();
 }
 
@@ -95,21 +93,21 @@ void render()
     player.render();
     spawner.render();
   }
-  
+
   UI.draw();
 }
 
 
-void drawTiles(){
- 
+void drawTiles() {
+
   float w = 128;
   float h = 128;
-  
-  for(int i = 0; i < width / w; i++)
+
+  for (int i = 0; i < width / w; i++)
   {
-    for(int j = 0; j < width / w; j++)
+    for (int j = 0; j < width / w; j++)
     {
-      image(grassTex, i * w, j * h, w, h);    
+      image(grassTex, i * w, j * h, w, h);
     }
   }
 }

@@ -32,6 +32,6 @@ class Bullet extends Entity
   {
     fill(0, 255f, 255f, 255f);
     //rect(x, y, WIDTH, HEIGHT);
-    image(rockTex, x,y, WIDTH,HEIGHT);
+    image(rockTex, x, y, WIDTH, HEIGHT);
   }
 }

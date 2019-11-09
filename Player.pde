@@ -7,9 +7,9 @@ class Player extends Entity
 
   PowerUpHandler powerH;
   ArrayList<Bullet> pBullets;
-  
+
   float speed = 256f;
-  
+
   Player(float x, float y, float w, float h)
   {
     super(x, y, w, h);
@@ -24,7 +24,7 @@ class Player extends Entity
   {
     PVector move = new PVector(0, 0);
 
-    
+
 
     if (Input.key_up || Input.key_w)
     {
@@ -80,14 +80,14 @@ class Player extends Entity
     y += move.y * dt;
 
     if (tempY != y || tempX != x) {
-    
-      
-      if(random(0f, 1f) > 0.1f)
+
+
+      if (random(0f, 1f) > 0.1f)
       {
         float angle = move.heading() + PI;
-      
+
         angle += random(-PI/4f, PI/4f);
-  
+
         particleSystem.createParticle(x, y, 8, 192, PVector.fromAngle(angle), 0.2f, color(40f, 200, 40f, 255f), color(165, 42, 42, 255));
       }
     }
@@ -101,22 +101,21 @@ class Player extends Entity
         points ++;
       }
     }
-    
   }
 
   void render()
   {
-    
-    
+
+
     fill(255, 0, 0, 255);
     ellipse(x, y, WIDTH, HEIGHT);
     baby.render();
-    
+
     for (int i = 0; i < powerH.total; i++) {
       if (powerH.active[i])
         print("Powerup avail: " + powerH.powerUpString[i] + "\n");
     }
-    
+
     print("\n\n");
   }
 }

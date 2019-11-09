@@ -6,20 +6,22 @@ class PowerUpHandler {
 
   public PowerUpHandler() {
   }
-  
-  public int getCost(int i) { return cost[i]; }
+
+  public int getCost(int i) { 
+    return cost[i];
+  }
 
   public void activatePowerUp(int i) {
     if (i > 0 && i < powerUpString.length)
       active[i] = true;
   }
-  
+
   public String getName(int i) {
     if (i >= 0 && i < powerUpString.length)
       return powerUpString[i]; 
     else return null;
   }
-  
+
   public void activate(int i) {
     if (i >= 0 && i < powerUpString.length)
       active[i] = true;
