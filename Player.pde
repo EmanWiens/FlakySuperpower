@@ -15,7 +15,7 @@ class Player extends Entity
     
     playerX = new ArrayList();
     playerY = new ArrayList();
-    baby = new Child(x,y, w/5, h /5);
+    baby = new Child(x,y, w/2, h /2);
     
     powerH = new PowerUpHandler();
     pBullets = new ArrayList<Bullet>();
