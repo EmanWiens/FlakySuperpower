@@ -8,6 +8,7 @@ class Player extends Entity
   //final float HEIGHT;
   PowerUpHandler powerH;
   ArrayList<Bullet> pBullets;
+  int points = 0;
 
   Player(float x, float y, float w, float h)
   {
@@ -42,6 +43,7 @@ class Player extends Entity
     {
       move.x += 1;
     }
+    
     if (Input.key_1) {
       powerH.usePowerUp(1 - 1);
     } else if (Input.key_2) {
@@ -65,20 +67,22 @@ class Player extends Entity
     {
       move.x -= 1;
     }
-    if(x - WIDTH/2 < width*0)
+    if (x - WIDTH/2 < width*0)
     {
       move.x += 1;
     }
-    
+
     move.normalize();
     move.mult(speed);
 
     x += move.x * dt;
     y += move.y * dt;
-    
+
     for (int i = 0; i < spawner.bullets.size(); i++) {
-      if (spawner.bullets.get(i).isColliding(this))
+      if (spawner.bullets.get(i).isColliding(this) && spawner.bullets.get(i).active) {
         spawner.bullets.get(i).active = false;
+        points ++;
+      }
     }
   }
 

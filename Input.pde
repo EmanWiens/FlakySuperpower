@@ -18,7 +18,7 @@ void keyPressed()
     if(key == 'm')  Input.key_m = true;
     if(key == 'n')  Input.key_n = true;
     if(key == 'o')  Input.key_o = true;
-    if(key == 'p')  Input.key_p = true;
+  //  if(key == 'p')  Input.key_p = true;
     if(key == 'q')  Input.key_q = true;
     if(key == 'r')  Input.key_r = true;
     if(key == 's')  Input.key_s = true;
@@ -66,7 +66,7 @@ void keyReleased()
     if(key == 'm')  Input.key_m = false;
     if(key == 'n')  Input.key_n = false;
     if(key == 'o')  Input.key_o = false;
-    if(key == 'p')  Input.key_p = false;
+    if(key == 'p')  Input.key_p = !Input.key_p;
     if(key == 'q')  Input.key_q = false;
     if(key == 'r')  Input.key_r = false;
     if(key == 's')  Input.key_s = false;
