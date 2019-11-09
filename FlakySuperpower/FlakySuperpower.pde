@@ -31,8 +31,6 @@ void draw()
     render();
 }
 
-
-
 void update(float dt)
 {
     player.update(dt);

@@ -9,9 +9,9 @@ class BulletSpawner
   
     void update(float dt)
     {
-        if(elapsed > 0.25f)
+        if(elapsed > 0.5f)
         {
-           elapsed -= dt;
+           elapsed = 0;
            
            if(random(0f, 1f) > chanceToShoot)
            {
