@@ -10,7 +10,7 @@ class Player extends Entity
   PowerUpHandler powerH;
   ArrayList<Bullet> pBullets;
   
-  ParticleSystem particleSystem = new ParticleSystem();
+  
   
   Player(float x, float y, float w, float h)
   {
@@ -115,18 +115,14 @@ class Player extends Entity
       }
     }
     
-    particleSystem.update(dt);
   }
 
   void render()
   {
     
-    particleSystem.render();
     
     fill(255, 0, 0, 255);
     ellipse(x, y, WIDTH, HEIGHT);
     baby.render();
-    
-    
   }
 }
