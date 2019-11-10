@@ -22,7 +22,7 @@ ParticleSystem particleSystem;
 
 void setup()
 {
-  size(1024, 768);
+  size(800, 600);
   smooth(0);
 
   prevTime = millis();
@@ -46,7 +46,7 @@ void setup()
   textSize(height * UI.TEXT_WIDTH);
   fill(255);
   stroke(255);
-  startGameButton = new Button(startButtonText, 0, (.5 - textWidth(startButtonText) / width) * width, .66 * height, textWidth(startButtonText) / width * 2, (textAscent() / height) * 2);
+  startGameButton = new Button(startButtonText, 0, (.5 - (textWidth(startButtonText)/2) / width) * width, .8 * height, textWidth(startButtonText) / width, (textAscent() / height));
 }
 
 void showStartScreen() {
@@ -54,9 +54,9 @@ void showStartScreen() {
   image(titleImg, width/2,height/2, width, height);
 
   textSize(height * UI.TEXT_WIDTH * 2);
-  stroke(255);
-  fill(255);
-  text(gameName, .5 * width - textWidth(gameName) / 2, .5 * height);
+  stroke(#6C99C9);
+  fill(#6C99C9);
+  text(gameName, .5 * width - textWidth(gameName) / 2, .23 * height);
   textSize(height * UI.TEXT_WIDTH);
   startGameButton.render();
 }
