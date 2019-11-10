@@ -1,6 +1,6 @@
 class Child extends Entity {
   float drag;
-  final float  DISTANCE_UNTIL_PLAYER_FOLLOW = 64;
+  final float  DISTANCE_UNTIL_PLAYER_FOLLOW = 75;
   PowerUpHandler powerH;
   boolean shield = false;
   private float shieldDiam;

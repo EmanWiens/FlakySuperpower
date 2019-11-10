@@ -21,7 +21,7 @@ void setup()
 
   prevTime = millis();
 
-  float playerSize = 32;
+  float playerSize = 50;
   player = new Player(width / 2, height / 2, playerSize, playerSize);
   UI = new UI_Handler();
 
@@ -29,7 +29,7 @@ void setup()
   pigTex = loadImage("pigTex.png");
   grassTex = loadImage("grassTex.jpg");
   fenceTex = loadImage("fenceTex.png");
-  //farmerTex = loadImage("f");
+  farmerTex = loadImage("farmerTex2.png");
   rockTex = loadImage("rockTex.png");
   
 

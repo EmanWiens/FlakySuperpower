@@ -8,6 +8,8 @@ class Player extends Entity
 
   float speed = 256f;
 
+  PVector move = new PVector(0, 0);
+
   Player(float x, float y, float w, float h)
   {
     super(x, y, w, h);
@@ -18,7 +20,7 @@ class Player extends Entity
 
   void update(float dt)
   {
-    PVector move = new PVector(0, 0);
+    move.x = move.y = 0;
 
     if (Input.key_up || Input.key_w) {
       move.y -= 1;
@@ -80,8 +82,13 @@ class Player extends Entity
 
   void render()
   {
-    fill(255, 0, 0, 255);
-    ellipse(x, y, WIDTH, HEIGHT);
+    pushMatrix();
+    translate(x, y);
+    rotate(move.heading());
+    image(farmerTex, 0, 0, WIDTH, HEIGHT);
+    
+    popMatrix();
     baby.render();
   }
+  
 }
