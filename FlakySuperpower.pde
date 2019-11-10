@@ -42,6 +42,7 @@ void init() {
   player = new Player(width / 2, height / 2, playerSize, playerSize);
   UI = new UI_Handler();
   spawner = new BulletSpawner();
+  Input.key_p = false;
 }
 
 void draw()

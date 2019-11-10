@@ -1,6 +1,6 @@
 class PowerUpHandler {
-  private String[] powerUpString = { "Shield", "Speed", "Circle bullets"};
-  private final int shield = 0, speed = 1, circleBullets = 2, total = 3;
+  private String[] powerUpString = { "Shield", "Speed", "Clear rocks on screen"};
+  private final int shield = 0, speed = 1, clearRocks = 2, total = 3;
   private final int cost[] = { 10, 10, 20 };
   Boolean active[] = { false, false, false };
   Child child; 
@@ -48,7 +48,7 @@ class PowerUpHandler {
       case speed:
         player.speed += 25;
         break;
-      case circleBullets: 
+      case clearRocks: 
         // hail of bullets coming from you or the baby 
         
         break;
