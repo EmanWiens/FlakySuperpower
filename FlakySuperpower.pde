@@ -20,8 +20,9 @@ UI_Handler UI;
 boolean startScreen;
 String gameName = "Save your bacon!";
 String startButtonText = "Get Rowdy!";
-Button startGameButton;
-
+String instructionText = "Instructions";
+Button startGameButton, instructionsButton, backButton;
+boolean instructions;
 ParticleSystem particleSystem;
 
 void setup()
@@ -48,16 +49,19 @@ void setup()
  //gameMusic = new SoundFile(this, "testMusic.wav");
   //gameMusic.loop();
   imageMode(CENTER);
-  
+
   textSize(height * UI.TEXT_WIDTH);
   fill(255);
   stroke(255);
   startGameButton = new Button(startButtonText, 0, (.5 - (textWidth(startButtonText)/2) / width) * width, .8 * height, textWidth(startButtonText) / width, (textAscent() / height));
+  instructionsButton = new Button(instructionText, 0, (.5 - ((textWidth(instructionText) / width))/2 *1.5) * width, 0.39 * height, (textWidth(instructionText) / width) * 1.5, (textAscent() / height)* 1.5);
+  instructionsButton.c = color(#A0C7F0);
+  backButton = new Button("BACK", 0, (.5 - ((textWidth(instructionText) / width))/2 *1.5) * width, 0.8 * height, (textWidth(instructionText) / width) * 1.5, (textAscent() / height)* 1.5);
 }
 
 void showStartScreen() {
   background(0);
-  image(titleImg, width/2,height/2, width, height);
+  image(titleImg, width/2, height/2, width, height);
 
   textSize(height * UI.TEXT_WIDTH * 2);
   stroke(#6C99C9);
@@ -65,6 +69,7 @@ void showStartScreen() {
   text(gameName, .5 * width - textWidth(gameName) / 2, .23 * height);
   textSize(height * UI.TEXT_WIDTH);
   startGameButton.render();
+  instructionsButton.render();
 }
 
 void init() {
@@ -73,6 +78,7 @@ void init() {
   player = new Player(width / 2, height / 2, playerSize, playerSize);
   // UI = new UI_Handler();
   UI.reset();
+  instructions = false;
   spawner = new BulletSpawner();
   coinSpawner = new CoinSpawner();
 }
@@ -98,7 +104,6 @@ void update(float dt)
 
         spawner.update(dt);
         coinSpawner.update(dt);
-       
       } else {
         float x= player.baby.x;
         float y = player.baby.y;
@@ -145,7 +150,10 @@ void render()
     
   
     UI.draw();
-  } 
+    if (instructions) {
+      instructions();
+    }
+  }
 }
 
 void drawTiles() {
@@ -188,11 +196,20 @@ void mouseReleased() {
       }
     }
   }
-  
+
   if (startGameButton.hit(mouseX, mouseY) && startScreen) {
     init();
     startScreen = false;
   } else if (UI.backToMenu.hit(mouseX, mouseY) && !startScreen && UI.gameOver) {
+    startScreen = true;
+  } else if (instructionsButton.hit(mouseX, mouseY) && !instructions) {
+    init();
+    instructions = true;
+    startScreen = false;
+  } 
+  else if (instructions && backButton.hit(mouseX, mouseY))
+  {
+    instructions = false;
     startScreen = true;
   }
 }
