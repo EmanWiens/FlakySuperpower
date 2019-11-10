@@ -1,12 +1,13 @@
 class Button extends Entity {
   String name; 
   int cost; 
-  boolean purchased = false;
+  boolean purchased;
 
   public Button(String name, int cost, float x, float y, float WIDTH, float HEIGHT) {
     super(x, y, WIDTH, HEIGHT);
     this.name = name; 
     this.cost = cost;
+    purchased = false;
   }
 
   public void update(float dt) {
@@ -22,6 +23,11 @@ class Button extends Entity {
   public void purchased() { 
     purchased = true; 
     name = "Purchased.";
+  }
+  
+  public void notPurchased() {
+    purchased = true; 
+    name = "Purchase: " + cost;
   }
 
   public void setPos(float x, float y) {
