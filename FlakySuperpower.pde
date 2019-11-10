@@ -142,6 +142,7 @@ void render()
       spawner.render();
       coinSpawner.render();
     }
+    
   
     UI.draw();
   } 

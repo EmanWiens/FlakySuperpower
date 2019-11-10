@@ -18,7 +18,7 @@ class CoinSpawner{
         
         if (random(0f, 1f) > 1f - chanceToSpawn && coins.size() <= 5)
         {
-          int x = int(random(100, 500)); int y = int(random(100, 700));
+          int x = int(random(100, width-100)); int y = int(random(100, height -100 ));
           
           coins.add(new Coin(x, y, 20, 20 ));  
           
