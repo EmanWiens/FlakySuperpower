@@ -87,6 +87,7 @@ void update(float dt)
 
         spawner.update(dt);
         coinSpawner.update(dt);
+       
       } else {
         float x= player.baby.x;
         float y = player.baby.y;
@@ -161,14 +162,14 @@ void drawTiles() {
 void mouseReleased() {
   if (UI.paused) {
     for (int i = 0; i < UI.buttons.size(); i++) {
-      if (UI.buttons.get(i).hit(mouseX, mouseY) && player.rocks >= UI.buttons.get(i).cost && !player.baby.powerH.active[i]) {
+      if (UI.buttons.get(i).hit(mouseX, mouseY) && player.coins >= UI.buttons.get(i).cost && !player.baby.powerH.active[i]) {
 
         if (i != player.baby.powerH.speed) {
           UI.buttons.get(i).purchased();
-          player.rocks -= UI.buttons.get(i).cost;
+          player.coins -= UI.buttons.get(i).cost;
           player.baby.powerH.activate(i);
         } else if (player.speed <= player.MAX_SPEED) {
-          player.rocks -= UI.buttons.get(i).cost;
+          player.coins -= UI.buttons.get(i).cost;
           player.baby.powerH.activate(i);
         } else if (player.speed >= player.MAX_SPEED)
           UI.buttons.get(i).purchased();

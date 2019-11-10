@@ -21,20 +21,36 @@ class CoinSpawner{
           int x = int(random(100, 500)); int y = int(random(100, 700));
           
           coins.add(new Coin(x, y, 20, 20 ));  
-         System.out.println("spawned");
+          
+          //System.out.println("spawned");
         }
         
     
   }
-  elapsed += dt;
+      elapsed += dt;
+      
+        for( int i = 0; i< coins.size();  i++){
+          coins.get(i).update(dt);
+          
+        }
   }
   
   void render(){
     for( Coin c: coins){
-     if(c. active){
-      c.render();
-     }
+     
+      if(c.active){
+        c.render();
     }
     
   }
+  
+  for( int i = 0; i< coins.size();  i++){
+     
+      if(!coins.get(i).active){
+        coins.remove(i);
+        i--;
+    }
+    
+  }
+}
 }
