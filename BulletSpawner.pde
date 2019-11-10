@@ -66,8 +66,18 @@ class BulletSpawner
     }
   }
   
+  // diam is a ratio of the screen
   void clearRocks(float diam) {
-    // TODO for all the rocks, if they are in the cicrle delete them
+    PVector rock, child; 
+    for (int i = 0; i < bullets.size(); i++) {
+      rock = new PVector(bullets.get(i).x, bullets.get(i).y);
+      child = new PVector(player.baby.x, player.baby.y);
+      
+      if (rock.dist(child) < (diam * width) / 2 + bullets.get(i).WIDTH) {
+        player.rocks++;
+        bullets.remove(i);
+      }
+    }
   }
 
   void render()
