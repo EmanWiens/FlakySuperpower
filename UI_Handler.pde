@@ -48,10 +48,10 @@ class UI_Handler {
       }
     }
     
-    String score = "Score";
+    String score = "Score: " + player.points;
     float pointsX =(width - textWidth(score)) - width * TEXT_HEIGHT;
     float pointsY = height * TEXT_HEIGHT;
-    text(score +": " + player.points, pointsX, pointsY);
+    text(score, pointsX, pointsY);
   }
 
   void update() {

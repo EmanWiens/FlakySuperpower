@@ -12,7 +12,7 @@ Player player;
 BulletSpawner spawner;
 UI_Handler UI;
 
-ParticleSystem particleSystem = new ParticleSystem();
+ParticleSystem particleSystem;
 
 void setup()
 {
@@ -20,20 +20,23 @@ void setup()
   smooth(0);
 
   prevTime = millis();
+  init();
 
-  float playerSize = 32;
-  player = new Player(width / 2, height / 2, playerSize, playerSize);
-  UI = new UI_Handler();
-
-  spawner = new BulletSpawner();
   pigTex = loadImage("pigTex.png");
   grassTex = loadImage("grassTex.jpg");
   fenceTex = loadImage("fenceTex.png");
   //farmerTex = loadImage("f");
   rockTex = loadImage("rockTex.png");
   
-
   imageMode(CENTER);
+}
+
+void init() {
+  particleSystem = new ParticleSystem();
+  float playerSize = 32;
+  player = new Player(width / 2, height / 2, playerSize, playerSize);
+  UI = new UI_Handler();
+  spawner = new BulletSpawner();
 }
 
 void draw()
@@ -78,6 +81,9 @@ void update(float dt)
   }
 
   UI.update();
+  
+  if (Input.key_r) 
+    init();
 }
 
 void render()

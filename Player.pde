@@ -1,6 +1,6 @@
 class Player extends Entity
 {
-  int points = 1000;
+  int points = 0;
   int childDist = 25;
   Child baby;
   ArrayList<Bullet> pBullets;
