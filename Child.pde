@@ -33,8 +33,7 @@ class Child extends Entity {
       float speed = player.speed;
       x += dir.x * speed * dt;
       y += dir.y * speed * dt;
-    } else if (dir.mag() < (player.WIDTH + player.HEIGHT) / 2)
-    {
+    } else if (dir.mag() < (player.WIDTH + player.HEIGHT) / 2) {
       dir.normalize();
 
       float speed = -player.speed;
@@ -46,6 +45,7 @@ class Child extends Entity {
       if (spawner.bullets.get(i).isColliding(this) && spawner.bullets.get(i).active) {
         if (!shield) {
           this.active = false;
+          UI.gameOver = true;
         } else {
           shield = false;
           powerH.deactivate(powerH.shield);

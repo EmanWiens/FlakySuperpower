@@ -5,9 +5,13 @@ class UI_Handler {
   final float buttonHeight = .1, buttonWidth = .30, buttonXOffset = .5;
   final float section_HEIGHT = .15;
   ArrayList<Button> buttons; 
+  Boolean gameOver;
+  final String gameOverString = "Game Over! :(";
+  final String pressR = "Press R to reset.";
 
   public UI_Handler() {
     buttons = new ArrayList<Button>();
+    gameOver = false;
     
     if (player != null && player.baby != null && player.baby.powerH != null)
       for (int i = 0; i < player.baby.powerH.total; i++) {
@@ -48,10 +52,25 @@ class UI_Handler {
       }
     }
     
-    String score = "Score";
-    float pointsX =(width - textWidth(score)) - width * TEXT_HEIGHT;
+    if (gameOver) {
+      fill(0);
+      stroke(0);
+      textSize(textSize * 2);
+      text(gameOverString, width / 2 - textWidth(gameOverString) / 2, height / 2);
+      
+      float tempHeight = textAscent();
+      textSize(textSize / 1.5);
+      text(pressR, width / 2 - textWidth(pressR) / 2, height / 2 + tempHeight);
+    }
+    
+    
+    fill(0);
+    stroke(0);
+    textSize(textSize);
+    String score = "Rocks: " + player.rocks;
+    float pointsX = (width - textWidth(score)) - width * TEXT_HEIGHT;
     float pointsY = height * TEXT_HEIGHT;
-    text(score +": " + player.points, pointsX, pointsY);
+    text(score, pointsX, pointsY);
   }
 
   void update() {

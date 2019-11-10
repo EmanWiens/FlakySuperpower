@@ -12,7 +12,7 @@ Player player;
 BulletSpawner spawner;
 UI_Handler UI;
 
-ParticleSystem particleSystem = new ParticleSystem();
+ParticleSystem particleSystem;
 
 void setup()
 {
@@ -20,6 +20,7 @@ void setup()
   smooth(0);
 
   prevTime = millis();
+  init();
 
   float playerSize = 50;
   player = new Player(width / 2, height / 2, playerSize, playerSize);
@@ -29,11 +30,18 @@ void setup()
   pigTex = loadImage("pigTex.png");
   grassTex = loadImage("grassTex.jpg");
   fenceTex = loadImage("fenceTex.png");
-  farmerTex = loadImage("farmerTex2.png");
+  farmerTex = loadImage("farmerTex3.png");
   rockTex = loadImage("rockTex.png");
   
-
   imageMode(CENTER);
+}
+
+void init() {
+  particleSystem = new ParticleSystem();
+  float playerSize = 32;
+  player = new Player(width / 2, height / 2, playerSize, playerSize);
+  UI = new UI_Handler();
+  spawner = new BulletSpawner();
 }
 
 void draw()
@@ -78,6 +86,9 @@ void update(float dt)
   }
 
   UI.update();
+  
+  if (Input.key_r) 
+    init();
 }
 
 void render()
@@ -120,14 +131,14 @@ void drawTiles() {
 void mouseReleased() {
   if (UI.paused) {
     for (int i = 0; i < UI.buttons.size(); i++) {
-      if (UI.buttons.get(i).hit(mouseX, mouseY) && player.points >= UI.buttons.get(i).cost && !player.baby.powerH.active[i]) {
+      if (UI.buttons.get(i).hit(mouseX, mouseY) && player.rocks >= UI.buttons.get(i).cost && !player.baby.powerH.active[i]) {
         
         if (i != player.baby.powerH.speed) {
           UI.buttons.get(i).purchased();
-          player.points -= UI.buttons.get(i).cost;
+          player.rocks -= UI.buttons.get(i).cost;
           player.baby.powerH.activate(i);
         } else if (player.speed <= player.MAX_SPEED) {
-          player.points -= UI.buttons.get(i).cost;
+          player.rocks -= UI.buttons.get(i).cost;
           player.baby.powerH.activate(i);
         } else if (player.speed >= player.MAX_SPEED)
           UI.buttons.get(i).purchased();
