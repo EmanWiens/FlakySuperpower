@@ -4,11 +4,16 @@ class Child extends Entity {
   PowerUpHandler powerH;
   boolean shield = false;
   private float shieldDiam;
+  float clearDiam = 0.01f;
+  float clearDiamInc = .01f;
+  boolean clearRocksActive;
+  float maxDiam = .5;
 
   public Child(float x, float y, float w, float h) {
     super(x, y, w, h);
     powerH = new PowerUpHandler(this);
     shieldDiam = w * 2.5f;
+    clearRocksActive = false;
   }
 
   public void render() {
@@ -18,13 +23,18 @@ class Child extends Entity {
       fill(54, 81, 91, 100);
       ellipse(x, y, shieldDiam, shieldDiam);
     }
+    
+    if (clearRocksActive) {
+      // stroke(255, 0, 0);
+      fill(255, 0, 0, 25);
+      // noFill();
+      ellipse(x, y, width * clearDiam, width * clearDiam);
+    }
   }
 
 
   public void update(float dt) {
-
     PVector dir = new PVector(player.x - x, player.y - y);
-
 
     if (dir.mag() > DISTANCE_UNTIL_PLAYER_FOLLOW)
     {
@@ -57,13 +67,22 @@ class Child extends Entity {
     }
     
     if (Input.key_1) {
-      powerH.usePowerUp(1 - 1);
-    } else if (Input.key_2) {
-      powerH.usePowerUp(2 - 1);
-    } else if (Input.key_3) {
-      powerH.usePowerUp(3 - 1);
-    } else if (Input.key_4) {
-      powerH.usePowerUp(4 - 1);
+      powerH.usePowerUp(powerH.clearRocks);
+    } 
+    
+    if (clearRocksActive)
+      clearRocks();
+  }
+  
+  void clearRocks() {
+    spawner.clearRocks(clearDiam);
+    clearDiam += clearDiamInc;
+    
+    if (clearDiam >= 1) {
+      clearRocksActive = false;
+      powerH.deactivate(powerH.clearRocks);
+      UI.resetButton(powerH.clearRocks); 
+      clearDiam = 0;
     }
   }
 }

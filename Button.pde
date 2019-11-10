@@ -23,7 +23,7 @@ class Button extends Entity {
 
   public void purchased() { 
     purchased = true; 
-    name = "Purchased.";
+    name = "Owned.";
   }
   
   public void notPurchased() {

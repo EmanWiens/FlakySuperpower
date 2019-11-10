@@ -50,6 +50,7 @@ class UI_Handler {
     if (paused && !gameOver) {
       background(#6ACDFA); //bleu
       text(p, textX, textY);
+      text(p, width * .5 - textWidth(p) / 2, textY);
       
       for (int i = 0; (sectY = (i + 1) * section_HEIGHT * height) < height; i++) {
         fill(255);
@@ -80,7 +81,6 @@ class UI_Handler {
       backToMenu.render();
     }
     
-    
     fill(255);
     stroke(255);
     textSize(textSize);
@@ -96,6 +96,10 @@ class UI_Handler {
     float coinsX = (width - textWidth(coins)) - width * TEXT_HEIGHT;
     float coinsY = height * TEXT_HEIGHT;
     text(coins, coinsX, coinsY);
+  }
+  
+  void resetButton(int i) {
+    buttons.get(i).notPurchased();
   }
 
   void update() {
