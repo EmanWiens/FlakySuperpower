@@ -48,8 +48,8 @@ class UI_Handler {
     String temp = null;
 
     if (paused && !gameOver) {
-      background(#6ACDFA); //bleu
-      text(p, textX, textY);
+      // background(#6ACDFA); //bleu
+      background(#76533E); // brown
       text(p, width * .5 - textWidth(p) / 2, textY);
       
       for (int i = 0; (sectY = (i + 1) * section_HEIGHT * height) < height; i++) {

@@ -22,7 +22,7 @@ ParticleSystem particleSystem;
 
 void setup()
 {
-  size(800, 600);
+  size(1024, 700);
   smooth(0);
 
   prevTime = millis();

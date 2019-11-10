@@ -2,7 +2,7 @@ class Button extends Entity {
   String name; 
   int cost; 
   boolean purchased;
-  color c = color(#76533E);
+  color c = color(#76533E); // brown
   
   public Button(String name, int cost, float x, float y, float WIDTH, float HEIGHT) {
     super(x, y, WIDTH, HEIGHT);
