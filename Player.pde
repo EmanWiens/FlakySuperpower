@@ -1,6 +1,7 @@
 class Player extends Entity
 {
   int rocks = 0;
+  int coins = 0;
   int childDist = 25;
   Child baby;
   ArrayList<Bullet> pBullets;
@@ -76,6 +77,13 @@ class Player extends Entity
       if (spawner.bullets.get(i).isColliding(this) && spawner.bullets.get(i).active) {
         spawner.bullets.get(i).active = false;
         rocks ++;
+      }
+    }
+       for (int i = 0; i < coinSpawner.coins.size(); i++) {
+      if (coinSpawner.coins.get(i).isColliding(this) && coinSpawner.coins.get(i).active) {
+        coinSpawner.coins.get(i).active = false;
+        coins ++;
+        System.out.println(coins);
       }
     }
   }

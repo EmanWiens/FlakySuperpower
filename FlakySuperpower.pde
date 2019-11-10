@@ -8,7 +8,7 @@ final float playerSize = 50;
 PVector[][] tileArray;
 final int tileNum = 5;
 Player player;
-
+CoinSpawner coinSpawner;
 BulletSpawner spawner;
 UI_Handler UI;
 
@@ -32,7 +32,7 @@ void setup()
   fenceTex = loadImage("fenceTex.png");
   farmerTex = loadImage("farmerTex3.png");
   rockTex = loadImage("rockTex.png");
-  
+  coinSpawner = new CoinSpawner();
   imageMode(CENTER);
 }
 
@@ -42,7 +42,10 @@ void init() {
   player = new Player(width / 2, height / 2, playerSize, playerSize);
   UI = new UI_Handler();
   spawner = new BulletSpawner();
+  
   Input.key_p = false;
+  coinSpawner = new CoinSpawner();
+
 }
 
 void draw()
@@ -64,6 +67,7 @@ void update(float dt)
       player.update(dt);
 
       spawner.update(dt);
+      coinSpawner.update(dt);
     } else
     {
       float x= player.baby.x;
@@ -101,6 +105,7 @@ void render()
     particleSystem.render();
     player.render();
     spawner.render();
+    coinSpawner.render();
   }
 
   UI.draw();
