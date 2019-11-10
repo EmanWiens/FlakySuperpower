@@ -83,6 +83,7 @@ void update(float dt)
 
         spawner.update(dt);
         coinSpawner.update(dt);
+       
       } else {
         float x= player.baby.x;
         float y = player.baby.y;

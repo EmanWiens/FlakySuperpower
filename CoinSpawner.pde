@@ -28,6 +28,11 @@ class CoinSpawner{
     
   }
       elapsed += dt;
+      
+        for( int i = 0; i< coins.size();  i++){
+          coins.get(i).update(dt);
+          
+        }
   }
   
   void render(){

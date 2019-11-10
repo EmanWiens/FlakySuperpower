@@ -83,7 +83,8 @@ class Player extends Entity
       if (coinSpawner.coins.get(i).isColliding(this) && coinSpawner.coins.get(i).active) {
         coinSpawner.coins.get(i).active = false;
         coins ++;
-        System.out.println(coins);
+        rocks++;
+        //System.out.println(coins);
       }
     }
   }

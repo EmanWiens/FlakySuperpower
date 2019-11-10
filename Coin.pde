@@ -1,9 +1,10 @@
 class Coin extends Entity{
   
-  
-  
+  float elapsed;
+  float timeUntilDespawn = 10;
   Coin(float x, float y, float w, float h){
     super(x,y,w,h);
+    float elapsed = 0;
   }
   
   void render(){
@@ -14,7 +15,10 @@ class Coin extends Entity{
   }
   
   void update(float dt){
-    
+    if(elapsed > timeUntilDespawn){
+      this.active = false;
+    }
+    elapsed += dt;
   }
   
 }
