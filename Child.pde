@@ -25,7 +25,6 @@ class Child extends Entity {
     }
     
     if (clearRocksActive) {
-      print("draw " + float(width) * clearDiam + "\n");
       // stroke(255, 0, 0);
       fill(255, 0, 0, 25);
       // noFill();
@@ -79,7 +78,11 @@ class Child extends Entity {
     spawner.clearRocks(clearDiam);
     clearDiam += clearDiamInc;
     
-    if (clearDiam >= 1) 
+    if (clearDiam >= 1) {
       clearRocksActive = false;
+      powerH.deactivate(powerH.clearRocks);
+      UI.resetButton(powerH.clearRocks); 
+      clearDiam = 0;
+    }
   }
 }

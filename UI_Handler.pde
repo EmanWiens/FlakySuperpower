@@ -95,6 +95,10 @@ class UI_Handler {
     float coinsY = height * TEXT_HEIGHT;
     text(coins, coinsX, coinsY);
   }
+  
+  void resetButton(int i) {
+    buttons.get(i).notPurchased();
+  }
 
   void update() {
     if (!gameOver)
