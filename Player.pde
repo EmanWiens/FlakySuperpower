@@ -23,16 +23,16 @@ class Player extends Entity
   {
     move.x = move.y = 0;
 
-    if (Input.key_up || Input.key_w) {
+    if (Input.key_up || Input.key_w || Input.mouse_up) {
       move.y -= 1;
     }
-    if (Input.key_down || Input.key_s) {
+    if (Input.key_down || Input.key_s || Input.mouse_down) {
       move.y += 1;
     }
-    if (Input.key_left || Input.key_a) {
+    if (Input.key_left || Input.key_a || Input.mouse_left) {
       move.x -= 1;
     }
-    if (Input.key_right || Input.key_d) { 
+    if (Input.key_right || Input.key_d || Input.mouse_right) { 
       move.x += 1;
     }
 

@@ -144,6 +144,11 @@ static class Input
   static boolean key_8 = false;
   static boolean key_9 = false;
   static boolean key_0 = false;
+  
+  static boolean mouse_up = false;
+  static boolean mouse_down = false;
+  static boolean mouse_left = false;
+  static boolean mouse_right = false;
 
 
   //GLOBALS FOR INPUT//////////////////////////////////////////////////////

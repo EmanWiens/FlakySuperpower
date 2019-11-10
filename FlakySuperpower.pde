@@ -17,6 +17,10 @@ boolean startScreen;
 String gameName = "Save your bacon!";
 String startButtonText = "Get Rowdy!";
 Button startGameButton;
+boolean mousePress;
+PVector mousePressPos, tempMousePos;
+float mousePressRatio = .025;
+final float maxAngle = 45;
 
 ParticleSystem particleSystem;
 
@@ -69,6 +73,8 @@ void init() {
   UI.reset();
   spawner = new BulletSpawner();
   coinSpawner = new CoinSpawner();
+  mousePress = false;
+  mousePressPos = new PVector(0, 0);
 }
 
 void draw()
@@ -139,6 +145,46 @@ void render()
   
     UI.draw();
   } 
+  
+  if (mousePress && !startScreen) {
+    noStroke();
+    fill(0, 0, 0, 150);
+    tempMousePos = new PVector(mouseX, mouseY);
+    ellipse(mousePressPos.x, mousePressPos.y, mousePressRatio * width, mousePressRatio * width);
+    float angle;
+    float delta_x = mousePressPos.x - tempMousePos.x;
+    float delta_y = mousePressPos.y - tempMousePos.y;
+    angle = atan2(delta_y, delta_x);
+    print("angle: " + angle + "\n");
+    
+    if (angle <= radians(1.5 * maxAngle) && angle >= radians(-1.5 * maxAngle)) {
+      Input.mouse_right = false;
+      Input.mouse_left = true;
+      print("left ");
+    } else if (angle >= radians(2.5 * maxAngle) || angle <= -radians(2.5 * maxAngle)) {
+      Input.mouse_right = true;
+      Input.mouse_left = false;
+      print("right " + angle + " ");
+    } else {
+      Input.mouse_right = false;
+      Input.mouse_left = false;
+    }
+    
+    if (angle >= radians(.5 * maxAngle) && angle <= radians(3.5 * maxAngle)) {
+      Input.mouse_up = true;
+      Input.mouse_down = false;
+      print("up ");
+    } else if (angle <= radians(-.5 * maxAngle) && angle >= radians(-3.5 * maxAngle)) {
+      Input.mouse_up = false;
+      Input.mouse_down = true;
+      print("down ");
+    } else {
+      Input.mouse_up = false;
+      Input.mouse_down = false;
+    }
+    
+    print("\n");
+  }
 }
 
 void drawTiles() {
@@ -188,4 +234,15 @@ void mouseReleased() {
   } else if (UI.backToMenu.hit(mouseX, mouseY) && !startScreen && UI.gameOver) {
     startScreen = true;
   }
+  
+  mousePress = false;
+  Input.mouse_up = false; 
+  Input.mouse_down = false;
+  Input.mouse_left = false;
+  Input.mouse_right = false;
+}
+
+void mousePressed() {
+  mousePress = true;
+  mousePressPos = new PVector(mouseX, mouseY);
 }
