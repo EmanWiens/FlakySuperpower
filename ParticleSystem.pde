@@ -41,6 +41,7 @@ class Particle
 
   void render()
   {
+    noStroke();
     fill(currColor);
     circle(x, y, size);
   }
