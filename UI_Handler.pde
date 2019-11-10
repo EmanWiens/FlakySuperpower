@@ -27,6 +27,7 @@ class UI_Handler {
     if (player != null && player.baby != null && player.baby.powerH != null)
       for (int i = 0; i < player.baby.powerH.total; i++) {
         buttons.add(new Button("Purchase: " + player.baby.powerH.getCost(i), player.baby.powerH.getCost(i), 0, 0, buttonWidth, buttonHeight));
+        buttons.get(i).c = color(#FF8ECA);
       }
       
     Input.key_p = false;
@@ -47,7 +48,7 @@ class UI_Handler {
     String temp = null;
 
     if (paused && !gameOver) {
-      background(0);
+      background(#6ACDFA); //bleu
       text(p, textX, textY);
       
       for (int i = 0; (sectY = (i + 1) * section_HEIGHT * height) < height; i++) {

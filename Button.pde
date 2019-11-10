@@ -2,7 +2,8 @@ class Button extends Entity {
   String name; 
   int cost; 
   boolean purchased;
-
+  color c = color(150);
+  
   public Button(String name, int cost, float x, float y, float WIDTH, float HEIGHT) {
     super(x, y, WIDTH, HEIGHT);
     this.name = name; 
@@ -36,12 +37,13 @@ class Button extends Entity {
   }
 
   public void render() {
-    stroke(150);
-    fill(150);
+    stroke(c);
+    fill(c);
     rect(x, y, WIDTH * width, HEIGHT * height);
 
     stroke(255);
     fill(255);
     text(name, x + (WIDTH * width) / 2 - textWidth(name) / 2, y + (HEIGHT * height / 2) + textAscent() / 3);
+    
   }
 }
