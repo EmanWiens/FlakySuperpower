@@ -23,6 +23,13 @@ String startButtonText = "Get Rowdy!";
 String instructionText = "Instructions";
 Button startGameButton, instructionsButton, backButton;
 boolean instructions;
+
+boolean mousePress;
+PVector mousePressPos, tempMousePos;
+float mousePressRatio = .025;
+final float maxAngle = 45;
+Button pauseButton; 
+
 ParticleSystem particleSystem;
 
 void setup()
@@ -54,9 +61,14 @@ void setup()
   fill(255);
   stroke(255);
   startGameButton = new Button(startButtonText, 0, (.5 - (textWidth(startButtonText)/2) / width) * width, .8 * height, textWidth(startButtonText) / width, (textAscent() / height));
+
   instructionsButton = new Button(instructionText, 0, (.5 - ((textWidth(instructionText) / width))/2 *1.5) * width, 0.39 * height, (textWidth(instructionText) / width) * 1.5, (textAscent() / height)* 1.5);
   instructionsButton.c = color(#A0C7F0);
   backButton = new Button("BACK", 0, (.5 - ((textWidth(instructionText) / width))/2 *1.5) * width, 0.8 * height, (textWidth(instructionText) / width) * 1.5, (textAscent() / height)* 1.5);
+  
+  String pause = "||"; 
+  pauseButton = new Button(pause, 0, (.95 - (textWidth(pause)/2) / width) * width, .05 * height, textWidth(pause) / width, (textAscent() / height));
+  pauseButton.c = color(150);
 }
 
 void showStartScreen() {
@@ -81,6 +93,8 @@ void init() {
   instructions = false;
   spawner = new BulletSpawner();
   coinSpawner = new CoinSpawner();
+  mousePress = false;
+  mousePressPos = new PVector(0, 0);
 }
 
 void draw()
@@ -148,10 +162,42 @@ void render()
       coinSpawner.render();
     }
     
-  
     UI.draw();
     if (instructions) {
       instructions();
+    pauseButton.render();
+  } 
+  
+  if (mousePress && !startScreen) {
+    noStroke();
+    fill(0, 0, 0, 150);
+    tempMousePos = new PVector(mouseX, mouseY);
+    ellipse(mousePressPos.x, mousePressPos.y, mousePressRatio * width, mousePressRatio * width);
+    float angle;
+    float delta_x = mousePressPos.x - tempMousePos.x;
+    float delta_y = mousePressPos.y - tempMousePos.y;
+    angle = atan2(delta_y, delta_x);
+    
+    if (angle <= radians(1.5 * maxAngle) && angle >= radians(-1.5 * maxAngle)) {
+      Input.mouse_right = false;
+      Input.mouse_left = true;
+    } else if (angle >= radians(2.5 * maxAngle) || angle <= -radians(2.5 * maxAngle)) {
+      Input.mouse_right = true;
+      Input.mouse_left = false;
+    } else {
+      Input.mouse_right = false;
+      Input.mouse_left = false;
+    }
+    
+    if (angle >= radians(.5 * maxAngle) && angle <= radians(3.5 * maxAngle)) {
+      Input.mouse_up = true;
+      Input.mouse_down = false;
+    } else if (angle <= radians(-.5 * maxAngle) && angle >= radians(-3.5 * maxAngle)) {
+      Input.mouse_up = false;
+      Input.mouse_down = true;
+    } else {
+      Input.mouse_up = false;
+      Input.mouse_down = false;
     }
   }
 }
@@ -196,7 +242,10 @@ void mouseReleased() {
       }
     }
   }
-
+  
+  if (!startScreen && pauseButton.hit(mouseX, mouseY)) {
+    Input.key_p = !UI.paused;
+  }
   if (startGameButton.hit(mouseX, mouseY) && startScreen) {
     init();
     startScreen = false;
@@ -212,4 +261,15 @@ void mouseReleased() {
     instructions = false;
     startScreen = true;
   }
+  
+  mousePress = false;
+  Input.mouse_up = false; 
+  Input.mouse_down = false;
+  Input.mouse_left = false;
+  Input.mouse_right = false;
+}
+
+void mousePressed() {
+  mousePress = true;
+  mousePressPos = new PVector(mouseX, mouseY);
 }
