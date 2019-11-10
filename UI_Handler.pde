@@ -7,9 +7,9 @@ class UI_Handler {
   ArrayList<Button> buttons; 
   Boolean gameOver;
   final String gameOverString = "Game Over! :(";
-  final String pressR = "Press R to reset.";
+  final String pressR = "Press R to reset";
   Button backToMenu;
-  final String backToMenuText = "Back to menu.";
+  final String backToMenuText = "Back to menu";
 
   public UI_Handler() {
     reset();
