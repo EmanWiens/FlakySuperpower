@@ -43,7 +43,6 @@ class UI_Handler {
         temp = player.baby.powerH.getName(i);
         if (temp != null)
           text(player.baby.powerH.getName(i), textX, sectY + (buttonHeight * height) / 2 + textAscent());
-          
         
         if (i < buttons.size()) {
           buttons.get(i).setPos(buttonXOffset * width, sectY + (buttonHeight * height) / 4);

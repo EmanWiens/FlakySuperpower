@@ -11,6 +11,10 @@ Player player;
 CoinSpawner coinSpawner;
 BulletSpawner spawner;
 UI_Handler UI;
+boolean startScreen;
+String gameName = "Save your bacon!";
+String startButtonText = "Get Rowdy!";
+Button startGameButton;
 
 ParticleSystem particleSystem;
 
@@ -20,7 +24,8 @@ void setup()
   smooth(0);
 
   prevTime = millis();
-  init();
+  startScreen = true;
+  // init();
 
   //float playerSize = 50;
   player = new Player(width / 2, height / 2, playerSize, playerSize);
@@ -34,6 +39,16 @@ void setup()
   rockTex = loadImage("rockTex.png");
   coinSpawner = new CoinSpawner();
   imageMode(CENTER);
+  
+  textSize(height * UI.TEXT_WIDTH);
+  startGameButton = new Button(startButtonText, 0, .5 * width - textWidth(startButtonText) / 2, .5 * height, textAscent(), textWidth(startButtonText));
+}
+
+void showStartScreen() {
+  textSize(height * UI.TEXT_WIDTH * 2);
+  stroke(255);
+  fill(255);
+  text(gameName, .5 * width - textWidth(gameName) / 2, .5 * height);
 }
 
 void init() {
@@ -42,10 +57,9 @@ void init() {
   player = new Player(width / 2, height / 2, playerSize, playerSize);
   UI = new UI_Handler();
   spawner = new BulletSpawner();
-  
+
   Input.key_p = false;
   coinSpawner = new CoinSpawner();
-
 }
 
 void draw()
@@ -60,55 +74,63 @@ void draw()
 
 void update(float dt)
 {
-  if (!UI.paused) {  
+  if (!startScreen) {
+    if (!UI.paused) {  
 
-    if (player.baby.active)
-    {
-      player.update(dt);
+      if (player.baby.active)
+      {
+        player.update(dt);
 
-      spawner.update(dt);
-      coinSpawner.update(dt);
-    } else
-    {
-      float x= player.baby.x;
-      float y = player.baby.y;
+        spawner.update(dt);
+        coinSpawner.update(dt);
+      } else {
+        float x= player.baby.x;
+        float y = player.baby.y;
 
-      float size = 8f;
+        float size = 8f;
 
-      float speed = random(128f, 256f);
+        float speed = random(128f, 256f);
 
-      PVector dir = PVector.fromAngle(random(0, TWO_PI));
+        PVector dir = PVector.fromAngle(random(0, TWO_PI));
 
-      float lifespan = random(0.1f, 1f);
+        float lifespan = random(0.1f, 1f);
 
-      color start = color(255, 35, 35, 255f);
-      color end = color(255, 35, 35, 0);
+        color start = color(255, 35, 35, 255f);
+        color end = color(255, 35, 35, 0);
 
-      particleSystem.createParticle(x, y, size, speed, dir, lifespan, start, end);
+        particleSystem.createParticle(x, y, size, speed, dir, lifespan, start, end);
+      }
+
+      particleSystem.update(dt);
     }
 
-    particleSystem.update(dt);
-  }
+    UI.update();
 
-  UI.update();
-  
-  if (Input.key_r) 
-    init();
+    if (Input.key_r) 
+      init();
+  }
 }
 
 void render()
 {
   background(0);
   noStroke();
-  if (!UI.paused) {
-    drawTiles();
-    particleSystem.render();
-    player.render();
-    spawner.render();
-    coinSpawner.render();
-  }
 
-  UI.draw();
+  showStartScreen();
+
+  if (!startScreen) {
+    if (!UI.paused) {
+      drawTiles();
+      particleSystem.render();
+      player.render();
+      spawner.render();
+      coinSpawner.render();
+    }
+  
+    UI.draw();
+  } else {
+    startGameButton.render();
+  }
 }
 
 void drawTiles() {
@@ -118,7 +140,7 @@ void drawTiles() {
 
   int maxX = (int)(width / w) + 1;
   int maxY = (int)(height / h) + 1;
-  
+
   for (int i = 0; i < maxX; i++)
   {
     for (int j = 0; j < maxY; j++)
@@ -126,7 +148,7 @@ void drawTiles() {
       image(grassTex, i * w, j * h, w, h);
     }
   }
-  
+
   fill(115, 35, 35f, 255f);
   rect(0, 0, width, h);
   rect(0, 0, w, height); 
@@ -138,7 +160,7 @@ void mouseReleased() {
   if (UI.paused) {
     for (int i = 0; i < UI.buttons.size(); i++) {
       if (UI.buttons.get(i).hit(mouseX, mouseY) && player.rocks >= UI.buttons.get(i).cost && !player.baby.powerH.active[i]) {
-        
+
         if (i != player.baby.powerH.speed) {
           UI.buttons.get(i).purchased();
           player.rocks -= UI.buttons.get(i).cost;
@@ -150,5 +172,10 @@ void mouseReleased() {
           UI.buttons.get(i).purchased();
       }
     }
+  }
+  
+  if (startGameButton.hit(mouseX, mouseY)) {
+    init();
+    startScreen = false;
   }
 }
