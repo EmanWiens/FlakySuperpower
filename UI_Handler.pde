@@ -90,7 +90,8 @@ class UI_Handler {
   }
 
   void update() {
-    paused = Input.key_p;    
+    if (!gameOver)
+      paused = Input.key_p;    
     
     for (int i = 0; i < buttons.size(); i++) {
       buttons.get(i).update();
