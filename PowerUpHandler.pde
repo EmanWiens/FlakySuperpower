@@ -2,7 +2,7 @@ class PowerUpHandler {
   private String[] powerUpString = { "Shield", "Speed", "Clear rocks on screen"};
   private final int shield = 0, speed = 1, clearRocks = 2, total = 3;
   private final int cost[] = { 10, 10, 20 };
-  Boolean active[] = { false, false, false };
+  Boolean owned[] = { false, false, false };
   Child child; 
 
   public PowerUpHandler(Child child) {
@@ -16,7 +16,7 @@ class PowerUpHandler {
   public void activatePowerUp(int i) {
     if (i > 0 && i < powerUpString.length)
       if (i != speed)
-        active[i] = true;
+        owned[i] = true;
   }
 
   public String getName(int i) {
@@ -28,13 +28,15 @@ class PowerUpHandler {
   public void activate(int i) {
     if (i >= 0 && i < powerUpString.length) {
       if (i != speed)
-        active[i] = true;
-      usePowerUp(i);
+        owned[i] = true;
+      
+      if (i != clearRocks)
+        usePowerUp(i);
     }
   }
   
   public void deactivate(int i) {
-    active[i] = false;
+    owned[i] = false;
     UI.buttons.get(i).notPurchased();
   }
 
@@ -50,7 +52,10 @@ class PowerUpHandler {
         break;
       case clearRocks: 
         // hail of bullets coming from you or the baby 
-        
+        if (owned[clearRocks]) {
+          child.clearRocks();
+          child.clearRocksActive = true;
+        }
         break;
       }
     }

@@ -48,7 +48,7 @@ class UI_Handler {
 
     if (paused && !gameOver) {
       background(0);
-      text(p, textX, textY);
+      text(p, width * .5 - textWidth(p) / 2, textY);
       
       for (int i = 0; (sectY = (i + 1) * section_HEIGHT * height) < height; i++) {
         fill(255);
@@ -78,7 +78,6 @@ class UI_Handler {
       
       backToMenu.render();
     }
-    
     
     fill(255);
     stroke(255);

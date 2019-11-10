@@ -65,6 +65,10 @@ class BulletSpawner
       b.update(dt);
     }
   }
+  
+  void clearRocks(float diam) {
+    // TODO for all the rocks, if they are in the cicrle delete them
+  }
 
   void render()
   {
