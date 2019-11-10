@@ -37,28 +37,32 @@ void setup()
   fenceTex = loadImage("fenceTex.png");
   farmerTex = loadImage("farmerTex3.png");
   rockTex = loadImage("rockTex.png");
-  coinSpawner = new CoinSpawner();
   imageMode(CENTER);
   
   textSize(height * UI.TEXT_WIDTH);
-  startGameButton = new Button(startButtonText, 0, .5 * width - textWidth(startButtonText) / 2, .5 * height, textAscent(), textWidth(startButtonText));
+  fill(255);
+  stroke(255);
+  startGameButton = new Button(startButtonText, 0, (.5 - textWidth(startButtonText) / width) * width, .66 * height, textWidth(startButtonText) / width * 2, (textAscent() / height) * 2);
 }
 
 void showStartScreen() {
+  background(0);
   textSize(height * UI.TEXT_WIDTH * 2);
   stroke(255);
   fill(255);
   text(gameName, .5 * width - textWidth(gameName) / 2, .5 * height);
+  
+  textSize(height * UI.TEXT_WIDTH);
+  startGameButton.render();
 }
 
 void init() {
   particleSystem = new ParticleSystem();
   //float playerSize = 50;
   player = new Player(width / 2, height / 2, playerSize, playerSize);
-  UI = new UI_Handler();
+  // UI = new UI_Handler();
+  UI.reset();
   spawner = new BulletSpawner();
-
-  Input.key_p = false;
   coinSpawner = new CoinSpawner();
 }
 
@@ -114,12 +118,12 @@ void update(float dt)
 
 void render()
 {
-  background(0);
+  // background(0);
   noStroke();
 
-  showStartScreen();
-
-  if (!startScreen) {
+  if (startScreen)
+    showStartScreen();
+  else if (!startScreen) {
     if (!UI.paused) {
       drawTiles();
       particleSystem.render();
@@ -129,9 +133,7 @@ void render()
     }
   
     UI.draw();
-  } else {
-    startGameButton.render();
-  }
+  } 
 }
 
 void drawTiles() {
@@ -175,8 +177,10 @@ void mouseReleased() {
     }
   }
   
-  if (startGameButton.hit(mouseX, mouseY)) {
+  if (startGameButton.hit(mouseX, mouseY) && startScreen) {
     init();
     startScreen = false;
+  } else if (UI.backToMenu.hit(mouseX, mouseY) && !startScreen) {
+    startScreen = true;
   }
 }
