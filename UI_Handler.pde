@@ -25,7 +25,7 @@ class UI_Handler {
     stroke(0);
     textSize(textSize);
     
-    float sectY = 0, prevSectY = 0;
+    float sectY = 0;
     String temp = null;
 
     if (paused) {
