@@ -121,9 +121,16 @@ void mouseReleased() {
   if (UI.paused) {
     for (int i = 0; i < UI.buttons.size(); i++) {
       if (UI.buttons.get(i).hit(mouseX, mouseY) && player.points >= UI.buttons.get(i).cost && !player.baby.powerH.active[i]) {
-        player.points -= UI.buttons.get(i).cost;
-        player.baby.powerH.activate(i);
-        UI.buttons.get(i).purchased();
+        
+        if (i != player.baby.powerH.speed) {
+          UI.buttons.get(i).purchased();
+          player.points -= UI.buttons.get(i).cost;
+          player.baby.powerH.activate(i);
+        } else if (player.speed <= player.MAX_SPEED) {
+          player.points -= UI.buttons.get(i).cost;
+          player.baby.powerH.activate(i);
+        } else if (player.speed >= player.MAX_SPEED)
+          UI.buttons.get(i).purchased();
       }
     }
   }

@@ -1,8 +1,8 @@
 class PowerUpHandler {
-  private String[] powerUpString = { "shield", "Circle bullets"};
-  private final int shield = 0, circleBullets = 1, total = 2;
-  private final int cost[] = { 10, 20 };
-  Boolean active[] = { false, false };
+  private String[] powerUpString = { "Shield", "Speed", "Circle bullets"};
+  private final int shield = 0, speed = 1, circleBullets = 2, total = 3;
+  private final int cost[] = { 10, 10, 20 };
+  Boolean active[] = { false, false, false };
   Child child; 
 
   public PowerUpHandler(Child child) {
@@ -15,7 +15,8 @@ class PowerUpHandler {
 
   public void activatePowerUp(int i) {
     if (i > 0 && i < powerUpString.length)
-      active[i] = true;
+      if (i != speed)
+        active[i] = true;
   }
 
   public String getName(int i) {
@@ -26,7 +27,8 @@ class PowerUpHandler {
 
   public void activate(int i) {
     if (i >= 0 && i < powerUpString.length) {
-      active[i] = true;
+      if (i != speed)
+        active[i] = true;
       usePowerUp(i);
     }
   }
@@ -42,6 +44,9 @@ class PowerUpHandler {
       case shield: 
         // give a shield to the baby
         child.shield = true;
+        break;
+      case speed:
+        player.speed += 25;
         break;
       case circleBullets: 
         // hail of bullets coming from you or the baby 
