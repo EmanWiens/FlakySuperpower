@@ -3,8 +3,8 @@ PImage pigTex;
 PImage fenceTex;
 PImage farmerTex;
 PImage rockTex;
-float prevTime;
-
+float  prevTime;
+final float playerSize = 50;
 PVector[][] tileArray;
 final int tileNum = 5;
 Player player;
@@ -22,7 +22,7 @@ void setup()
   prevTime = millis();
   init();
 
-  float playerSize = 50;
+  //float playerSize = 50;
   player = new Player(width / 2, height / 2, playerSize, playerSize);
   UI = new UI_Handler();
 
@@ -38,7 +38,7 @@ void setup()
 
 void init() {
   particleSystem = new ParticleSystem();
-  float playerSize = 32;
+  //float playerSize = 50;
   player = new Player(width / 2, height / 2, playerSize, playerSize);
   UI = new UI_Handler();
   spawner = new BulletSpawner();
