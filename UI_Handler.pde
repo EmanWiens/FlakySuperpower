@@ -8,8 +8,19 @@ class UI_Handler {
   Boolean gameOver;
   final String gameOverString = "Game Over! :(";
   final String pressR = "Press R to reset.";
+  Button backToMenu;
+  final String backToMenuText = "Back to menu.";
 
   public UI_Handler() {
+    reset();
+    
+    textSize(height * TEXT_WIDTH);
+    fill(255);
+    stroke(255);
+    backToMenu = new Button(backToMenuText, 0, (.5 - textWidth(backToMenuText) / width) * width, .66 * height, textWidth(backToMenuText) / width * 2, (textAscent() / height) * 2);
+  }
+  
+  void reset() {
     buttons = new ArrayList<Button>();
     gameOver = false;
     
@@ -17,6 +28,9 @@ class UI_Handler {
       for (int i = 0; i < player.baby.powerH.total; i++) {
         buttons.add(new Button("Purchase: " + player.baby.powerH.getCost(i), player.baby.powerH.getCost(i), 0, 0, buttonWidth, buttonHeight));
       }
+      
+    Input.key_p = false;
+    Input.key_space = false;
   }
 
   void draw() {
@@ -32,7 +46,8 @@ class UI_Handler {
     float sectY = 0;
     String temp = null;
 
-    if (paused) {
+    if (paused && !gameOver) {
+      background(0);
       text(p, textX, textY);
       
       for (int i = 0; (sectY = (i + 1) * section_HEIGHT * height) < height; i++) {
@@ -60,6 +75,8 @@ class UI_Handler {
       float tempHeight = textAscent();
       textSize(textSize / 1.5);
       text(pressR, width / 2 - textWidth(pressR) / 2, height / 2 + tempHeight);
+      
+      backToMenu.render();
     }
     
     
@@ -73,7 +90,7 @@ class UI_Handler {
   }
 
   void update() {
-    paused = Input.key_p;
+    paused = Input.key_p;    
     
     for (int i = 0; i < buttons.size(); i++) {
       buttons.get(i).update();

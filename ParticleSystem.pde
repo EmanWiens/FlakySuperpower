@@ -74,8 +74,6 @@ class ParticleSystem
   void render()
   {
     for (Particle p : particles)
-    {
       p.render();
-    }
   }
 }

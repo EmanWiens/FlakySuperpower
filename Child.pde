@@ -46,7 +46,7 @@ class Child extends Entity {
         if (!shield) {
           this.active = false;
           UI.gameOver = true;
-          startScreen = true;
+          // startScreen = true;
         } else {
           shield = false;
           powerH.deactivate(powerH.shield);
