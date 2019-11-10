@@ -25,8 +25,8 @@ class UI_Handler {
     String p = "Paused";
     float textSize = height * TEXT_WIDTH;
 
-    fill(0);
-    stroke(0);
+    fill(255);
+    stroke(255);
     textSize(textSize);
     
     float sectY = 0;
@@ -64,8 +64,8 @@ class UI_Handler {
     }
     
     
-    fill(0);
-    stroke(0);
+    fill(255);
+    stroke(255);
     textSize(textSize);
     String score = "Rocks: " + player.rocks;
     float pointsX = (width - textWidth(score)) - width * TEXT_HEIGHT;
