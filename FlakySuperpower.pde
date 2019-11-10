@@ -3,7 +3,9 @@ PImage pigTex;
 PImage fenceTex;
 PImage farmerTex;
 PImage rockTex;
+PImage titleImg;
 float  prevTime;
+
 final float playerSize = 50;
 PVector[][] tileArray;
 final int tileNum = 5;
@@ -37,6 +39,8 @@ void setup()
   fenceTex = loadImage("fenceTex.png");
   farmerTex = loadImage("farmerTex3.png");
   rockTex = loadImage("rockTex.png");
+  titleImg = loadImage("titleScreenImage.png");
+
   imageMode(CENTER);
   
   textSize(height * UI.TEXT_WIDTH);
@@ -47,11 +51,12 @@ void setup()
 
 void showStartScreen() {
   background(0);
+  image(titleImg, width/2,height/2, width, height);
+
   textSize(height * UI.TEXT_WIDTH * 2);
   stroke(255);
   fill(255);
   text(gameName, .5 * width - textWidth(gameName) / 2, .5 * height);
-  
   textSize(height * UI.TEXT_WIDTH);
   startGameButton.render();
 }
