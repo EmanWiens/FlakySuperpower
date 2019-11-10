@@ -53,8 +53,9 @@ void setup()
   rockTex = loadImage("rockTex.png");
   titleImg = loadImage("titleScreenImage.png");
 
-  //gameMusic = new SoundFile(this, "testMusic.wav");
-  //gameMusic.loop();
+  
+ gameMusic = new SoundFile(this, "farmerJam.wav");
+  gameMusic.loop();
   imageMode(CENTER);
 
   textSize(height * UI.TEXT_WIDTH);
