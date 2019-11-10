@@ -21,6 +21,7 @@ boolean mousePress;
 PVector mousePressPos, tempMousePos;
 float mousePressRatio = .025;
 final float maxAngle = 45;
+Button pauseButton; 
 
 ParticleSystem particleSystem;
 
@@ -51,6 +52,10 @@ void setup()
   fill(255);
   stroke(255);
   startGameButton = new Button(startButtonText, 0, (.5 - (textWidth(startButtonText)/2) / width) * width, .8 * height, textWidth(startButtonText) / width, (textAscent() / height));
+  
+  String pause = "||"; 
+  pauseButton = new Button(pause, 0, (.95 - (textWidth(pause)/2) / width) * width, .05 * height, textWidth(pause) / width, (textAscent() / height));
+  pauseButton.c = color(150);
 }
 
 void showStartScreen() {
@@ -144,6 +149,7 @@ void render()
     }
   
     UI.draw();
+    pauseButton.render();
   } 
   
   if (mousePress && !startScreen) {
@@ -155,16 +161,13 @@ void render()
     float delta_x = mousePressPos.x - tempMousePos.x;
     float delta_y = mousePressPos.y - tempMousePos.y;
     angle = atan2(delta_y, delta_x);
-    print("angle: " + angle + "\n");
     
     if (angle <= radians(1.5 * maxAngle) && angle >= radians(-1.5 * maxAngle)) {
       Input.mouse_right = false;
       Input.mouse_left = true;
-      print("left ");
     } else if (angle >= radians(2.5 * maxAngle) || angle <= -radians(2.5 * maxAngle)) {
       Input.mouse_right = true;
       Input.mouse_left = false;
-      print("right " + angle + " ");
     } else {
       Input.mouse_right = false;
       Input.mouse_left = false;
@@ -173,17 +176,13 @@ void render()
     if (angle >= radians(.5 * maxAngle) && angle <= radians(3.5 * maxAngle)) {
       Input.mouse_up = true;
       Input.mouse_down = false;
-      print("up ");
     } else if (angle <= radians(-.5 * maxAngle) && angle >= radians(-3.5 * maxAngle)) {
       Input.mouse_up = false;
       Input.mouse_down = true;
-      print("down ");
     } else {
       Input.mouse_up = false;
       Input.mouse_down = false;
     }
-    
-    print("\n");
   }
 }
 
@@ -226,6 +225,10 @@ void mouseReleased() {
           UI.buttons.get(i).purchased();
       }
     }
+  }
+  
+  if (!startScreen && pauseButton.hit(mouseX, mouseY)) {
+    Input.key_p = !UI.paused;
   }
   
   if (startGameButton.hit(mouseX, mouseY) && startScreen) {

@@ -79,7 +79,7 @@ class Player extends Entity
         rocks ++;
       }
     }
-       for (int i = 0; i < coinSpawner.coins.size(); i++) {
+    for (int i = 0; i < coinSpawner.coins.size(); i++) {
       if (coinSpawner.coins.get(i).isColliding(this) && coinSpawner.coins.get(i).active) {
         coinSpawner.coins.get(i).active = false;
         coins ++;
@@ -95,9 +95,8 @@ class Player extends Entity
     translate(x, y);
     rotate(move.heading());
     image(farmerTex, 0, 0, WIDTH, HEIGHT);
-    
+
     popMatrix();
     baby.render();
   }
-  
 }
