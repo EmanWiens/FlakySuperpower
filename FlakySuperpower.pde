@@ -71,8 +71,8 @@ void update(float dt)
 
       float lifespan = random(0.1f, 1f);
 
-      color start = color(200f, 150f, 150f, 255f);
-      color end = color(200f, 150f, 150f, 0f);
+      color start = color(255, 35, 35, 255f);
+      color end = color(255, 35, 35, 0);
 
       particleSystem.createParticle(x, y, size, speed, dir, lifespan, start, end);
     }
