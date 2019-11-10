@@ -1,5 +1,5 @@
 class PowerUpHandler {
-  private String[] powerUpString = { "Shield", "Speed", "Clear rocks on screen"};
+  private String[] powerUpString = { "Life Insurance", "Wheelies", "Nova"};
   private final int shield = 0, speed = 1, clearRocks = 2, total = 3;
   private final int cost[] = { 10, 10, 20 };
   Boolean owned[] = { false, false, false };

@@ -117,7 +117,7 @@ void instructions(){
   textSize(23);
   String summary = "OBJECTIVE: \n You are a farmer. \n Your prized pig, 'Piggy Smalls', is the envy of all other farmers. \n Protect Piggy Smalls from the rocks thrown by your jealous neighbors.";
   String objective = "Collect gold coins to purchase powerups to protect your pig.";
-  String buttons = "BUTTONS: \n Use 'w', 'a', 's', 'd', or arrow keys to move. \n Use 'p' or 'space' to pause and open the Powerup Menu"; 
+  String buttons = "BUTTONS: \n Use 'w', 'a', 's', 'd', or arrow keys to move. \n Use 'p' or 'space' to pause and open the Powerup Menu. \nPress 'Q' to use your Nova Powerup"; 
   
   text(summary, 15,50);
   text(objective, 15, 220);

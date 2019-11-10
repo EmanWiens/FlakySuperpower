@@ -66,7 +66,7 @@ class Child extends Entity {
       }
     }
     
-    if (Input.key_1) {
+    if (Input.key_q) {
       powerH.usePowerUp(powerH.clearRocks);
     } 
     
