@@ -6,19 +6,14 @@ class Particle
   float speed;
 
   PVector dir;
-
   float size;
-
 
   final float LIFESPAN;
   float currentLife;
 
-
   color startColor;
   color endColor;
-
   color currColor;
-
 
   Particle(float x, float y, float size, float speed, PVector dir, float lifespan, color start, color end)
   {
@@ -58,7 +53,6 @@ class ParticleSystem
   void createParticle(float x, float y, float size, float speed, PVector dir, float lifespan, color start, color end)
   {
     Particle p = new Particle(x, y, size, speed, dir, lifespan, start, end);
-
     particles.add(p);
   }
 

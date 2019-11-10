@@ -1,6 +1,5 @@
 class Player extends Entity
 {
-
   int points = 0;
   int childDist = 25;
   Child baby;
@@ -68,7 +67,6 @@ class Player extends Entity
       }
     }
 
-
     baby.update(dt);
 
     for (int i = 0; i < spawner.bullets.size(); i++) {
@@ -81,8 +79,6 @@ class Player extends Entity
 
   void render()
   {
-
-
     fill(255, 0, 0, 255);
     ellipse(x, y, WIDTH, HEIGHT);
     baby.render();

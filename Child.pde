@@ -12,8 +12,6 @@ class Child extends Entity {
   }
 
   public void render() {
-
-    // rect(x, y, WIDTH, HEIGHT);
     image(pigTex, x, y, WIDTH, HEIGHT);
     
     if (shield) {

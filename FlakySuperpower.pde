@@ -17,8 +17,6 @@ ParticleSystem particleSystem = new ParticleSystem();
 void setup()
 {
   size(1024, 768);
-   
-
   smooth(0);
 
   prevTime = millis();
@@ -44,7 +42,6 @@ void draw()
   float dt = (currTime - prevTime) / 1000f;
   prevTime = currTime;
   update(dt);
-
 
   render();
 }
@@ -97,7 +94,6 @@ void render()
   UI.draw();
 }
 
-
 void drawTiles() {
 
   float w = 32;
@@ -119,8 +115,6 @@ void drawTiles() {
   rect(0, 0, w, height); 
   rect(0, height - h, width, h);
   rect(width - w, 0, w, height);
-  
-  
 }
 
 void mouseReleased() {
