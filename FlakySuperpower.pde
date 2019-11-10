@@ -179,7 +179,7 @@ void mouseReleased() {
   if (startGameButton.hit(mouseX, mouseY) && startScreen) {
     init();
     startScreen = false;
-  } else if (UI.backToMenu.hit(mouseX, mouseY) && !startScreen) {
+  } else if (UI.backToMenu.hit(mouseX, mouseY) && !startScreen && UI.gameOver) {
     startScreen = true;
   }
 }
