@@ -4,8 +4,6 @@ class Player extends Entity
   int points = 0;
   int childDist = 25;
   Child baby;
-
-  PowerUpHandler powerH;
   ArrayList<Bullet> pBullets;
 
   float speed = 256f;
@@ -15,8 +13,6 @@ class Player extends Entity
     super(x, y, w, h);
 
     baby = new Child(x + 32, y + 32, w/2, h /2);
-
-    powerH = new PowerUpHandler();
     pBullets = new ArrayList<Bullet>();
   }
 
@@ -24,49 +20,29 @@ class Player extends Entity
   {
     PVector move = new PVector(0, 0);
 
-
-
-    if (Input.key_up || Input.key_w)
-    {
+    if (Input.key_up || Input.key_w) {
       move.y -= 1;
     }
-    if (Input.key_down || Input.key_s)
-    {
+    if (Input.key_down || Input.key_s) {
       move.y += 1;
     }
-    if (Input.key_left || Input.key_a)
-    {
+    if (Input.key_left || Input.key_a) {
       move.x -= 1;
     }
-    if (Input.key_right || Input.key_d)
-    {
+    if (Input.key_right || Input.key_d) { 
       move.x += 1;
     }
 
-    if (Input.key_1) {
-      powerH.usePowerUp(1 - 1);
-    } else if (Input.key_2) {
-      powerH.usePowerUp(2 - 1);
-    } else if (Input.key_3) {
-      powerH.usePowerUp(3 - 1);
-    } else if (Input.key_4) {
-      powerH.usePowerUp(4 - 1);
-    }
-
-    if (y + HEIGHT/2 >= height)
-    {
+    if (y + HEIGHT/2 >= height) {
       move.y -= 1;
     }
-    if (y - HEIGHT/2 <= height*0)
-    {
+    if (y - HEIGHT/2 <= height*0) {
       move.y += 1;
     }
-    if (x + WIDTH/2 > width)
-    {
+    if (x + WIDTH/2 > width) {
       move.x -= 1;
     }
-    if (x - WIDTH/2 < width*0)
-    {
+    if (x - WIDTH/2 < width*0) {
       move.x += 1;
     }
 
@@ -110,12 +86,5 @@ class Player extends Entity
     fill(255, 0, 0, 255);
     ellipse(x, y, WIDTH, HEIGHT);
     baby.render();
-
-    for (int i = 0; i < powerH.total; i++) {
-      if (powerH.active[i])
-        print("Powerup avail: " + powerH.powerUpString[i] + "\n");
-    }
-
-    print("\n\n");
   }
 }

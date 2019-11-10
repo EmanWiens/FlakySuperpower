@@ -9,9 +9,9 @@ class UI_Handler {
   public UI_Handler() {
     buttons = new ArrayList<Button>();
     
-    if (player != null && player.powerH != null)
-      for (int i = 0; i < player.powerH.total; i++) {
-        buttons.add(new Button("Purchase: " + player.powerH.getCost(i), player.powerH.getCost(i), 0, 0, buttonWidth, buttonHeight));
+    if (player != null && player.baby != null && player.baby.powerH != null)
+      for (int i = 0; i < player.baby.powerH.total; i++) {
+        buttons.add(new Button("Purchase: " + player.baby.powerH.getCost(i), player.baby.powerH.getCost(i), 0, 0, buttonWidth, buttonHeight));
       }
   }
 
@@ -36,9 +36,9 @@ class UI_Handler {
         stroke(255);
         textSize(textSize);
         
-        temp = player.powerH.getName(i);
+        temp = player.baby.powerH.getName(i);
         if (temp != null)
-          text(player.powerH.getName(i), textX, sectY + (buttonHeight * height) / 2 + textAscent());
+          text(player.baby.powerH.getName(i), textX, sectY + (buttonHeight * height) / 2 + textAscent());
           
         
         if (i < buttons.size()) {
