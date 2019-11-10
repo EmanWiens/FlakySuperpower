@@ -9,8 +9,10 @@ class Coin extends Entity{
   
   void render(){
      
-    fill(255,255, 0);
-    ellipse(x,y, WIDTH,HEIGHT);
+    //fill(255,255, 0);
+    noStroke();
+    image(coinTex, x, y, WIDTH,HEIGHT);
+    // ellipse(x,y, WIDTH,HEIGHT);
     
   }
   
