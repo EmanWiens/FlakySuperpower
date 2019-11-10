@@ -66,10 +66,18 @@ class UI_Handler {
     fill(255);
     stroke(255);
     textSize(textSize);
-    String score = "Rocks: " + player.rocks;
-    float pointsX = (width - textWidth(score)) - width * TEXT_HEIGHT;
+    String score = "Score: " + player.rocks;
+    float pointsX = (0 + textWidth(score)) - width * TEXT_HEIGHT;
     float pointsY = height * TEXT_HEIGHT;
     text(score, pointsX, pointsY);
+    
+    fill(255);
+    stroke(255);
+    textSize(textSize);
+    String coins = "Coins: " + player.coins;
+    float coinsX = (width - textWidth(coins)) - width * TEXT_HEIGHT;
+    float coinsY = height * TEXT_HEIGHT;
+    text(coins, coinsX, coinsY);
   }
 
   void update() {
