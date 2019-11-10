@@ -1,6 +1,6 @@
 PImage grassTex;
 PImage pigTex;
-PImage fenceTex;
+PImage coinTex;
 PImage farmerTex;
 PImage rockTex;
 PImage titleImg;
@@ -36,11 +36,11 @@ void setup()
   spawner = new BulletSpawner();
   pigTex = loadImage("pigTex.png");
   grassTex = loadImage("grassTex.jpg");
-  fenceTex = loadImage("fenceTex.png");
-  farmerTex = loadImage("farmerTex3.png");
+  coinTex = loadImage("coinTex.png");
+  farmerTex = loadImage("farmerTex.png");
   rockTex = loadImage("rockTex.png");
   titleImg = loadImage("titleScreenImage.png");
-
+  
   imageMode(CENTER);
   
   textSize(height * UI.TEXT_WIDTH);
