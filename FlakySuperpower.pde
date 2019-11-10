@@ -202,12 +202,12 @@ void mouseReleased() {
     startScreen = false;
   } else if (UI.backToMenu.hit(mouseX, mouseY) && !startScreen && UI.gameOver) {
     startScreen = true;
-  } else if (instructionsButton.hit(mouseX, mouseY) && !instructions) {
+  } else if (instructionsButton.hit(mouseX, mouseY) && !instructions && startScreen) {
     init();
     instructions = true;
     startScreen = false;
   } 
-  else if (instructions && backButton.hit(mouseX, mouseY))
+  else if (instructions && backButton.hit(mouseX, mouseY) && !startScreen)
   {
     instructions = false;
     startScreen = true;
