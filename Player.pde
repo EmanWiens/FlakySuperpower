@@ -1,7 +1,7 @@
 class Player extends Entity
 {
   int rocks = 0;
-  int coins = 20;
+  int coins = 0;
   int childDist = 25;
   Child baby;
   ArrayList<Bullet> pBullets;
