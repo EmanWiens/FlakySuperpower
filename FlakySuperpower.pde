@@ -126,14 +126,14 @@ void drawTiles() {
 void mouseReleased() {
   if (UI.paused) {
     for (int i = 0; i < UI.buttons.size(); i++) {
-      if (UI.buttons.get(i).hit(mouseX, mouseY) && player.points >= UI.buttons.get(i).cost && !player.baby.powerH.active[i]) {
+      if (UI.buttons.get(i).hit(mouseX, mouseY) && player.rocks >= UI.buttons.get(i).cost && !player.baby.powerH.active[i]) {
         
         if (i != player.baby.powerH.speed) {
           UI.buttons.get(i).purchased();
-          player.points -= UI.buttons.get(i).cost;
+          player.rocks -= UI.buttons.get(i).cost;
           player.baby.powerH.activate(i);
         } else if (player.speed <= player.MAX_SPEED) {
-          player.points -= UI.buttons.get(i).cost;
+          player.rocks -= UI.buttons.get(i).cost;
           player.baby.powerH.activate(i);
         } else if (player.speed >= player.MAX_SPEED)
           UI.buttons.get(i).purchased();

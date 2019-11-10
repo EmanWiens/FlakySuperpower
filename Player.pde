@@ -1,6 +1,6 @@
 class Player extends Entity
 {
-  int points = 0;
+  int rocks = 0;
   int childDist = 25;
   Child baby;
   ArrayList<Bullet> pBullets;
@@ -73,7 +73,7 @@ class Player extends Entity
     for (int i = 0; i < spawner.bullets.size(); i++) {
       if (spawner.bullets.get(i).isColliding(this) && spawner.bullets.get(i).active) {
         spawner.bullets.get(i).active = false;
-        points ++;
+        rocks ++;
       }
     }
   }
